@@ -1,0 +1,270 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".AllStarActivity" >
+
+    <include layout="@layout/layout_star_fortune_title" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dip"
+        android:background="@drawable/star_background"
+        android:paddingBottom="40dip"
+        android:paddingTop="25dip"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:layout_marginBottom="30dip"
+            android:orientation="vertical" >
+
+            <!--
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/ctl_day_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:gravity="center"
+                    android:textColor="@color/purple"
+                    android:text="今日运势"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/ctl_day_time_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dip"
+                    android:gravity="center"
+                    android:textColor="@color/purple"
+                    android:text="天平座"
+                    android:textSize="25sp" />
+            </LinearLayout>
+            -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="150dip"
+                android:layout_margin="10dip"
+                android:background="@drawable/star_today_bg1"
+                android:orientation="vertical"
+                android:padding="10sp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text0"
+                        style="@style/all_start_txt"
+                        android:background="@drawable/star_today_text0_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+
+                    <RatingBar
+                        android:id="@+id/rtb0"
+                        style="@style/ratingbar_style"
+                        android:layout_height="25dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text1"
+                        style="@style/all_start_txt"
+                        android:background="@drawable/star_today_text1_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+
+                    <RatingBar
+                        android:id="@+id/rtb1"
+                        style="@style/ratingbar_style"
+                        android:layout_height="25dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text2"
+                        style="@style/all_start_txt"
+                        android:background="@drawable/star_today_text2_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+
+                    <RatingBar
+                        android:id="@+id/rtb2"
+                        style="@style/ratingbar_style"
+                        android:layout_height="25dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text3"
+                        style="@style/all_start_txt"
+                        android:background="@drawable/star_today_text3_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+
+                    <RatingBar
+                        android:id="@+id/rtb3"
+                        style="@style/ratingbar_style"
+                        android:layout_height="25dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:background="@drawable/star_today_bg2"
+                android:orientation="vertical"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="10dip" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text4"
+                        style="@style/all_start_txt"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/text44"
+                        style="@style/all_start_txt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text5"
+                        style="@style/all_start_txt" />
+
+                    <TextView
+                        android:id="@+id/text55"
+                        style="@style/all_start_txt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text6"
+                        style="@style/all_start_txt" />
+
+                    <TextView
+                        android:id="@+id/text66"
+                        style="@style/all_start_txt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text7"
+                        style="@style/all_start_txt" />
+
+                    <TextView
+                        android:id="@+id/text77"
+                        style="@style/all_start_txt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/text8"
+                        style="@style/all_start_txt" />
+
+                    <TextView
+                        android:id="@+id/text88"
+                        style="@style/all_start_txt" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="25dip"
+                android:layout_marginLeft="10dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/star_today_circle" />
+
+                <TextView
+                    android:id="@+id/text9"
+                    style="@style/all_start_txt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:background="@drawable/star_today_bg2"
+                android:orientation="vertical"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="10dip" >
+
+                <TextView
+                    android:id="@+id/text99"
+                    style="@style/all_start_txt" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:apk="http://schemas.android.com/apk/res/android"
+    apk:oneshot="false" >
+
+    <item
+        apk:drawable="@drawable/md15_1"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_2"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_3"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_4"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_5"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_6"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_7"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_8"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_9"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_10"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_11"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_12"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_13"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md15_14"
+        apk:duration="150"/>
+    
+
+</animation-list>

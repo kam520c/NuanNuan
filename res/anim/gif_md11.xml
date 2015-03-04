@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:apk="http://schemas.android.com/apk/res/android"
+    apk:oneshot="false" >
+
+    <item
+        apk:drawable="@drawable/md11_1"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_2"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_3"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_4"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_5"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_6"
+        apk:duration="150"/>
+    <item
+        apk:drawable="@drawable/md11_7"
+        apk:duration="150"/>
+
+</animation-list>

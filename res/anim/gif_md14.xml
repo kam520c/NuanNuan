@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:apk="http://schemas.android.com/apk/res/android"
+    apk:oneshot="false" >
+
+    <item
+        apk:drawable="@drawable/md14_1"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_2"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_3"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_4"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_5"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_6"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_7"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_8"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_9"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_10"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_11"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_12"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_13"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_14"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_15"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_16"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md14_17"
+        apk:duration="100"/>
+  
+
+</animation-list>

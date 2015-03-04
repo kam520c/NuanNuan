@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_names">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+    <string-array name="list_menu">
+        <item>用户中心</item>
+        <item>地图展现</item>
+        <item>查看投诉</item>
+        <item>现场投诉</item>
+        <item>投诉管理</item>
+        <item>天气预报</item>
+        <item>升级检查</item>
+        <item>退出程序</item>
+    </string-array>
+    <string-array name="list_reasion">
+        <item>该位置是积水点了</item>
+        <item>该位置井盖不见了</item>
+        <item>该位置的水管爆裂了</item>
+        <item>该位置的道路塌陷了</item>
+        <item>其他原因</item>
+    </string-array>
+     <string-array name="list_state">
+        <item>未执行</item>
+        <item>执行中</item>
+        <item>已完成</item>
+    </string-array>
+    
+         <declare-styleable name="JazzyViewPager">
+        <attr name="style">
+            <enum name="standard" value="0" />
+            <enum name="tablet" value="1" />
+            <enum name="cubein" value="2" />
+            <enum name="cubeout" value="3" />
+            <enum name="flipvertical" value="4" />
+            <enum name="fliphorizontal" value="5" />
+            <enum name="stack" value="6" />
+            <enum name="zoomin" value="7" />
+            <enum name="zoomout" value="8" />
+            <enum name="rotateup" value="9" />
+            <enum name="rotatedown" value="10" />
+            <enum name="accordion" value="11" />
+        </attr>
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="outlineEnabled" format="boolean" />
+        <attr name="outlineColor" format="color|reference" />
+    </declare-styleable>
+
+</resources>

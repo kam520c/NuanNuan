@@ -1,0 +1,67 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- 黑色15号字体 -->
+    <style name="text_black_15">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <!-- 黑色18号字体 -->
+    <style name="text_black_18">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- 星座style -->
+    <style name="ratingbar_style" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rtb_sns</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">25dip</item>
+        <item name="android:layout_marginRight">3dip</item>
+        <item name="android:numStars">5</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:max">5</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="all_start_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">5dip</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="all_lin">
+        <item name="android:layout_marginRight">16dip</item>
+        <item name="android:layout_marginLeft">16dip</item>
+    </style>
+<!--  dialog属性-->
+<style name="MyDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item> 
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+<!--  dialog动画效果-->
+    <style name="dialogWindowAnim" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/push_left_in</item>
+        <item name="android:windowExitAnimation">@anim/push_left_out</item>
+    </style>
+</resources>

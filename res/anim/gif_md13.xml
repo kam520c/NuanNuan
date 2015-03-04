@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:apk="http://schemas.android.com/apk/res/android"
+    apk:oneshot="false" >
+
+    <item
+        apk:drawable="@drawable/md13_1"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_2"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_3"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_4"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_5"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_6"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_7"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_8"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_9"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_10"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_11"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_12"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_13"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_14"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_15"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_16"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_17"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_18"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_19"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_20"
+        apk:duration="100"/>
+    <item
+        apk:drawable="@drawable/md13_21"
+        apk:duration="100"/>
+  
+
+</animation-list>
