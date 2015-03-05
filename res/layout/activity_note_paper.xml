@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/note_paper" >
+
+    <LinearLayout
+        android:id="@+id/edit_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/note_paper_bottom"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/deleteNote"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:background="@drawable/btn_ashcan" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/title_note"
+        android:layout_alignParentTop="true"
+        layout="@layout/included_addmood_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/edit_bottom"
+        android:layout_below="@id/title_note"
+          android:background="@drawable/note_paper" >
+
+        <com.nuannuan.mood.custom.controls.LineEditText
+            
+            android:id="@+id/edit_mood"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+          	android:layout_marginTop="15dip"
+          	android:layout_marginLeft="15dip"
+          	android:layout_marginRight="15dip"
+            android:gravity="left"
+            android:inputType="textNoSuggestions|textMultiLine"
+            android:minLines="10"
+            android:padding="5dip"
+            android:text="Kam"
+            android:textColor="@color/purple"
+            android:background="@null" 
+            android:textSize="22sp"
+            android:lineSpacingExtra="10dip" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_lace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_note"
+        android:background="@drawable/star_title_flower" />
+
+</RelativeLayout>

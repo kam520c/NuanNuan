@@ -5,22 +5,19 @@
     android:orientation="vertical"
     tools:context=".AllStarActivity" >
 
-    <include layout="@layout/layout_star_fortune_title" />
-
+  <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="30dip"
-        android:background="@drawable/star_background"
-        android:paddingBottom="40dip"
-        android:paddingTop="25dip"
         android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
-            android:layout_marginBottom="30dip"
             android:orientation="vertical" >
 
             <!--
@@ -64,7 +61,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="25dip"
+                        android:layout_height="28dip"
                         android:layout_marginBottom="5dip"
                         android:layout_marginTop="5dip"
                         android:gravity="center_vertical"
@@ -170,7 +167,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="25dip"
+                        android:layout_height="28dip"
                         android:layout_marginBottom="5dip"
                         android:layout_marginTop="5dip"
                         android:gravity="center_vertical"
@@ -208,7 +205,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="25dip"
+                        android:layout_height="28dip"
                         android:layout_marginBottom="5dip"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
@@ -245,7 +242,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="25dip"
+                        android:layout_height="28dip"
                         android:layout_marginBottom="5dip"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
@@ -349,5 +346,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+</LinearLayout>
 </LinearLayout>

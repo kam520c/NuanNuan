@@ -162,7 +162,7 @@ public class InhaleView extends View {
 				});
 
 		if (null != animation) {
-			animation.setDuration(1000);
+			animation.setDuration(2000);
 			this.startAnimation(animation);
 			animation.setAnimationListener(new AnimationListener() {
 
@@ -194,7 +194,7 @@ public class InhaleView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		Log.i("leehong2", "onDraw  =========== ");
-		canvas.drawColor(0xFFCCCCCC);
+		canvas.drawColor(0x00CCCCCC);
 
 		canvas.concat(mMatrix);
 

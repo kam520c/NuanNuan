@@ -62,7 +62,7 @@ public class Rotate3dAnimation extends Animation {
 		float degrees = fromDegrees
 				+ ((mToDegrees - fromDegrees) * interpolatedTime);
 
-		final float centerX = mCenterX/2;
+		final float centerX = mCenterX;
 		final float centerY = mCenterY/2;
 		final Camera camera = mCamera;
 

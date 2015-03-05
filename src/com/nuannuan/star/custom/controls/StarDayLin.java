@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -52,12 +53,13 @@ public class StarDayLin extends LinearLayout {
 	public StarDayLin(Context context, String str) {
 		super(context);
 		// TODO Auto-generated constructor stub
+//		Log.v("==============str==============", ""+str);
 		mContext = context;
 		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);//迭代器
 
 		View view = inflater.inflate(R.layout.layout_star_day, this);
-		View viewTitle = inflater.inflate(R.layout.layout_star_fortune_title, this);
+//		View viewTitle = inflater.inflate(R.layout.layout_star_fortune_title, this);
 		initView(view);
 //		initViewtitle(viewTitle);
 		JSONObject json0 = new JSONObject();
@@ -117,7 +119,7 @@ public class StarDayLin extends LinearLayout {
 			String starname =name.get("cn").toString();
 			
 			String date =arr.getString(11).toString();
-			initViewtitle(viewTitle,starname,date);//初始化头部的时间和星座
+//			initViewtitle(viewTitle,starname,date);//初始化头部的时间和星座
 //			day_time_title.setText(starname);
 //			day_title.setText("今日运势");
 			
@@ -166,19 +168,18 @@ public class StarDayLin extends LinearLayout {
 		else if(starname.equals("双鱼座"))
 			a=12;
 		switch(a){
-		case 1:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 2:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 3:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 4:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 5:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 6:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 7:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 8:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 9:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 10:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 11:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		case 12:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
-		default:text21.setBackgroundResource(R.drawable.star_title_xingzuo);break;
+		case 1:text21.setBackgroundResource(R.drawable.star_baiyang);break;
+		case 2:text21.setBackgroundResource(R.drawable.star_jinniu);break;
+		case 3:text21.setBackgroundResource(R.drawable.star_shuangzi);break;
+		case 4:text21.setBackgroundResource(R.drawable.star_juxie);break;
+		case 5:text21.setBackgroundResource(R.drawable.star_shizi);break;
+		case 6:text21.setBackgroundResource(R.drawable.star_chunv);break;
+		case 7:text21.setBackgroundResource(R.drawable.star_tianping);break;
+		case 8:text21.setBackgroundResource(R.drawable.star_tianxie);break;
+		case 9:text21.setBackgroundResource(R.drawable.star_sheshou);break;
+		case 10:text21.setBackgroundResource(R.drawable.star_mojie);break;
+		case 11:text21.setBackgroundResource(R.drawable.star_shuiping);break;
+		case 12:text21.setBackgroundResource(R.drawable.star_shuangyu);break;
 		}
 //		text21.setBackgroundResource(R.drawable.star_title_xingzuo);
 //		text20.setBackgroundColor(color.hotpink);

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    android:background="@drawable/title_mood_trend" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/all_back" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_save" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center" />
+        	
+    </RelativeLayout>
+
+</RelativeLayout>

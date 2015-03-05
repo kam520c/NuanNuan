@@ -57,10 +57,13 @@ public class RecordMoodsActivity extends Activity implements
 	private Animation animation; // 渐变动画
 	private List<Integer> gifList = new ArrayList<Integer>();
 	private int position = 0;
-	private List<Integer> gifList2 = new ArrayList<Integer>();
-	private List<Integer> listup2;
+	// private List<Integer> gifList2 = new ArrayList<Integer>();
+	// private List<Integer> listup2;
 	private List<Integer> listup;
 	private int imagePosition = 0;
+	private List<Integer> listDown;
+	private List<String> textList;
+	private String JsonMoodStr = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,49 +77,36 @@ public class RecordMoodsActivity extends Activity implements
 		day = mIntent.getIntExtra("day", -1);
 		mContext = this;
 		initGifList1();
-		initGifList2();
-		// mEditText = (LineEditText) findViewById(R.id.edit_mood);
+		addMoodUp1();
+		addMoodDown1();
+		addMoodText1();
+
 		initAnim(gifList.get(0));
-		Button GoLineEdit = (Button) findViewById(R.id.add_line_btn);
+
+		ImageView GoLineEdit = (ImageView) findViewById(R.id.moods_pen_btn);
 		GoLineEdit.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				JsonMoodStr = getJsonForMood();
 				Intent mIntent = new Intent(RecordMoodsActivity.this,
 						LineEditActivity.class);
+				mIntent.putExtra("mood", JsonMoodStr);
 				startActivity(mIntent);
 			}
 		});
+		//
+		gif = (ImageView) findViewById(R.id.mood_img_bg);
 
-		Button mButton = (Button) findViewById(R.id.add_mood_btn);
-		gif = (ImageView) findViewById(R.id.gif1);
-
+		Button mButton = (Button) findViewById(R.id.btn_add);
 		mButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				String mood = "";
+				JsonMoodStr = getJsonForMood();
 
-				JSONObject json = new JSONObject();
-				try {
-					if (position == 0) {
-						json.put("Drawable", listup.get(imagePosition));
-						json.put("gif", imagePosition);
-					} else {
-						json.put("Drawable", listup2.get(imagePosition));
-						json.put("gif", imagePosition + 7);
-					}
-
-					json.put("mood", mood);
-					json.put("weather", "weather");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				MoodUtility.WriteJsonMood(mContext, oldTime, day,
-						json.toString());
+				MoodUtility.WriteJsonMood(mContext, oldTime, day, JsonMoodStr);
 				Intent intent = new Intent(mContext, HomeActivity.class);
 				// Log.v("=======tab=======", ""+tab);
 				intent.putExtra("tab", 1);
@@ -125,10 +115,36 @@ public class RecordMoodsActivity extends Activity implements
 		});
 		setupJazziness(TransitionEffect.CubeOut);
 		initDots();
+		Button backBtn = (Button) findViewById(R.id.btn_back);
+		backBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 
 	}
 
+	private String getJsonForMood() {
+		String mood = "";
+
+		JSONObject json = new JSONObject();
+		try {
+			json.put("gif", imagePosition);
+			json.put("mood", mood);
+			json.put("weather", "weather");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mood = json.toString();
+		return mood;
+	}
+
 	private void initGifList1() {
+
 		gifList.add(anim.gif_md1);
 		gifList.add(anim.gif_md2);
 		gifList.add(anim.gif_md3);
@@ -137,6 +153,15 @@ public class RecordMoodsActivity extends Activity implements
 		gifList.add(anim.gif_md6);
 		gifList.add(anim.gif_md7);
 		gifList.add(anim.gif_md8);
+
+		gifList.add(anim.gif_md9);
+		gifList.add(anim.gif_md10);
+		gifList.add(anim.gif_md11);
+		gifList.add(anim.gif_md12);
+		gifList.add(anim.gif_md13);
+		gifList.add(anim.gif_md14);
+		gifList.add(anim.gif_md15);
+		gifList.add(anim.gif_md15);
 	}
 
 	private List<Integer> addMoodUp1() {
@@ -149,11 +174,20 @@ public class RecordMoodsActivity extends Activity implements
 		listup.add(R.drawable.md6_up);
 		listup.add(R.drawable.md7_up);
 		listup.add(R.drawable.md8_up);
+
+		listup.add(R.drawable.md9_up);
+		listup.add(R.drawable.md10_up);
+		listup.add(R.drawable.md11_up);
+		listup.add(R.drawable.md12_up);
+		listup.add(R.drawable.md13_up);
+		listup.add(R.drawable.md14_up);
+		listup.add(R.drawable.md15_up);
+		listup.add(R.drawable.md15_up);
 		return listup;
 	}
 
 	private List<Integer> addMoodDown1() {
-		List<Integer> listDown = new ArrayList<Integer>();
+		listDown = new ArrayList<Integer>();
 		listDown.add(R.drawable.md1_down);
 		listDown.add(R.drawable.md2_down);
 		listDown.add(R.drawable.md3_down);
@@ -162,11 +196,20 @@ public class RecordMoodsActivity extends Activity implements
 		listDown.add(R.drawable.md6_down);
 		listDown.add(R.drawable.md7_down);
 		listDown.add(R.drawable.md8_down);
+
+		listDown.add(R.drawable.md9_down);
+		listDown.add(R.drawable.md10_down);
+		listDown.add(R.drawable.md11_down);
+		listDown.add(R.drawable.md12_down);
+		listDown.add(R.drawable.md13_down);
+		listDown.add(R.drawable.md14_down);
+		listDown.add(R.drawable.md15_down);
+		listDown.add(R.drawable.md15_down);
 		return listDown;
 	}
 
 	private List<String> addMoodText1() {
-		List<String> textList = new ArrayList<String>();
+		textList = new ArrayList<String>();
 		textList.add("幸福");
 		textList.add("生气");
 		textList.add("泪奔");
@@ -175,57 +218,16 @@ public class RecordMoodsActivity extends Activity implements
 		textList.add("喜欢");
 		textList.add("砍人");
 		textList.add("崇拜");
+
+		textList.add("无语");
+		textList.add("开心");
+		textList.add("乖乖");
+		textList.add("尴尬");
+		textList.add("发呆");
+		textList.add("大哭");
+		textList.add("鄙视");
+		textList.add("鄙视");
 		return textList;
-	}
-
-	private void initGifList2() {
-		gifList2.add(anim.gif_md9);
-		gifList2.add(anim.gif_md10);
-		gifList2.add(anim.gif_md11);
-		gifList2.add(anim.gif_md12);
-		gifList2.add(anim.gif_md13);
-		gifList2.add(anim.gif_md14);
-		gifList2.add(anim.gif_md15);
-		gifList2.add(anim.gif_md15);
-	}
-
-	private List<Integer> addMoodUp2() {
-		listup2 = new ArrayList<Integer>();
-		listup2.add(R.drawable.md9_up);
-		listup2.add(R.drawable.md10_up);
-		listup2.add(R.drawable.md11_up);
-		listup2.add(R.drawable.md12_up);
-		listup2.add(R.drawable.md13_up);
-		listup2.add(R.drawable.md14_up);
-		listup2.add(R.drawable.md15_up);
-		listup2.add(R.drawable.md15_up);
-		return listup2;
-	}
-
-	private List<Integer> addMoodDown2() {
-		List<Integer> listDown2 = new ArrayList<Integer>();
-		listDown2.add(R.drawable.md9_down);
-		listDown2.add(R.drawable.md10_down);
-		listDown2.add(R.drawable.md11_down);
-		listDown2.add(R.drawable.md12_down);
-		listDown2.add(R.drawable.md13_down);
-		listDown2.add(R.drawable.md14_down);
-		listDown2.add(R.drawable.md15_down);
-		listDown2.add(R.drawable.md15_down);
-		return listDown2;
-	}
-
-	private List<String> addMoodText2() {
-		List<String> textList2 = new ArrayList<String>();
-		textList2.add("无语");
-		textList2.add("开心");
-		textList2.add("乖乖");
-		textList2.add("尴尬");
-		textList2.add("发呆");
-		textList2.add("大哭");
-		textList2.add("鄙视");
-		textList2.add("鄙视");
-		return textList2;
 	}
 
 	private void setupJazziness(TransitionEffect effect) {
@@ -234,37 +236,44 @@ public class RecordMoodsActivity extends Activity implements
 		mJazzy.setTransitionEffect(effect);
 		int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
 
-		MoodLin layout1 = new MoodLin(this, screenWidth, addMoodUp1(),
-				addMoodDown1(), addMoodText1());
+		List<Integer> listDownLin = new ArrayList<Integer>();
+		List<Integer> listupLin = new ArrayList<Integer>();
+		List<String> listTxtLin = new ArrayList<String>();
+		int j = 0;
+		for (int i = 0; i < gifList.size(); i++) {
 
-		layout1.setmButtonIm(new TrendButtonIm() {
+			listDownLin.add(listDown.get(i));
+			listupLin.add(listup.get(i));
+			listTxtLin.add(textList.get(i));
 
-			@Override
-			public void TrendonClick(View view) {
-				// TODO Auto-generated method stub
-				imagePosition = view.getId();
-				Log.v("=====imagePosition=====", "" + imagePosition);
-				int anim = gifList.get(imagePosition);
-				initAnim(anim);
+			if ((listDownLin.size()) % 8 == 0) {
+
+				j = j + 1;
+				MoodLin layout = new MoodLin(this, screenWidth, listupLin,
+						listDownLin, listTxtLin, j);
+
+				for (int k = 0; k < 8; k++) {
+					listDownLin.remove(0);
+					listupLin.remove(0);
+					listTxtLin.remove(0);
+				}
+
+				layout.setmButtonIm(new TrendButtonIm() {
+
+					@Override
+					public void TrendonClick(View view) {
+						// TODO Auto-generated method stub
+						imagePosition = view.getId() - 1;
+						Log.v("=====imagePosition=====", "" + imagePosition);
+						int anim = gifList.get(imagePosition);
+						initAnim(anim);
+					}
+				});
+
+				list.add(layout);
 			}
-		});
 
-		MoodLin layout2 = new MoodLin(this, screenWidth, addMoodUp2(),
-				addMoodDown2(), addMoodText2());
-
-		layout2.setmButtonIm(new TrendButtonIm() {
-
-			@Override
-			public void TrendonClick(View view) {
-				// TODO Auto-generated method stub
-				imagePosition = view.getId();
-				int anim = gifList2.get(imagePosition);
-				initAnim(anim);
-			}
-		});
-
-		list.add(layout1);
-		list.add(layout2);
+		}
 
 		RecordMoodAdapter adapter = new RecordMoodAdapter(list, mJazzy);
 		mJazzy.setAdapter(adapter);
@@ -277,7 +286,7 @@ public class RecordMoodsActivity extends Activity implements
 	// 初始化动画
 	private void initAnim(int anim) {
 		// 城市箭头补间动画
-		ImageView imageView = (ImageView) findViewById(R.id.gif1);
+		ImageView imageView = (ImageView) findViewById(R.id.mood_img_bg);
 		imageView.setBackgroundResource(anim);
 		AnimationDrawable ad = (AnimationDrawable) imageView.getBackground();
 		ad.start();
@@ -294,18 +303,19 @@ public class RecordMoodsActivity extends Activity implements
 
 		for (int i = 0; i < list.size(); i++) {
 			ImageView imageView = new ImageView(this);
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
+			// LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+			// LinearLayout.LayoutParams.WRAP_CONTENT,
+			// LinearLayout.LayoutParams.WRAP_CONTENT);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(20, 20);
 			lp.setMargins(20, 0, 20, 0);
 			imageView.setLayoutParams(lp);
 
 			imageViews[i] = imageView;
 			if (i == 0) {
 				// 默认选中第一张图片
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_blue);
+				imageViews[i].setBackgroundResource(R.drawable.mood_click);
 			} else {
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
+				imageViews[i].setBackgroundResource(R.drawable.mood_unclick);
 			}
 			group.addView(imageViews[i]);
 		}
@@ -328,9 +338,9 @@ public class RecordMoodsActivity extends Activity implements
 		position = arg0;
 		// 设置底部小点选中状态
 		for (int i = 0; i < imageViews.length; i++) {
-			imageViews[arg0].setBackgroundResource(R.drawable.splash_doc_blue);
+			imageViews[arg0].setBackgroundResource(R.drawable.mood_click);
 			if (arg0 != i) {
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
+				imageViews[i].setBackgroundResource(R.drawable.mood_unclick);
 			}
 			if (arg0 == 3) {
 				// 设置导航按钮可见

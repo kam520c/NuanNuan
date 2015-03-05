@@ -84,7 +84,7 @@
         android:layout_width="fill_parent"
         android:layout_below="@id/layout_star_fortune_titile1"
         android:layout_marginTop="5dip"
-        android:layout_marginBottom="5dip"
+        android:layout_marginBottom="10dip"
         android:orientation="horizontal">
         
         <TextView

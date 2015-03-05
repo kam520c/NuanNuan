@@ -89,7 +89,8 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 		// initMap();
 		// 初始化布局元素
 		initViews();
-		fragmentManager = this.getSupportFragmentManager();;
+		fragmentManager = this.getSupportFragmentManager();
+		;
 		;
 		// 第一次启动时选中第0个tab
 		setTabSelection(0);
@@ -105,7 +106,8 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 		// 每次选中之前先清楚掉上次的选中状态
 		clearSelection();
 		// 开启一个Fragment事务
-		android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+		android.support.v4.app.FragmentTransaction transaction = fragmentManager
+				.beginTransaction();
 		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
 		// hideFragments(transaction);
 		switch (index) {
@@ -166,9 +168,8 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		Intent mIntent= getIntent();
-		int tab=mIntent.getIntExtra("tab", 0);
-		Log.v("=======tab=======", ""+tab);
+		Intent mIntent = getIntent();
+		int tab = mIntent.getIntExtra("tab",0);
 		setTabSelection(tab);
 		super.onResume();
 		// mMapView.unpause();

@@ -150,5 +150,6 @@ public class NuanNuanApp extends Application {
 	public void setLogin(boolean isLogin) {
 		this.isLogin = isLogin;
 	}
+	
 
 }

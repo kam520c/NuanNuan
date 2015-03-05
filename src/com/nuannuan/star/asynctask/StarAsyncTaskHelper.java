@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
@@ -60,7 +63,7 @@ public class StarAsyncTaskHelper extends AsyncTask<String, Integer, JSONArray> {
 		// TODO Auto-generated method stub
 
 		// List<String> results = new ArrayList<String>();
-		/* 锟斤拷锟斤拷锟斤拷址锟街凤拷 */
+		//设置传入参数
 		JSONArray arry = new JSONArray();
 
 		String day = getDayData("day", params[0]);
@@ -76,9 +79,10 @@ public class StarAsyncTaskHelper extends AsyncTask<String, Integer, JSONArray> {
 		arry.put(month);
 		arry.put(year);
 		arry.put(love);
-		
-		if(day==null||week==null||month==null||tomorrow==null||year==null||love==null){
-			arry=null;
+
+		if (day == null || week == null || month == null || tomorrow == null
+				|| year == null || love == null) {
+			arry = null;
 		}
 
 		return arry;
@@ -88,49 +92,53 @@ public class StarAsyncTaskHelper extends AsyncTask<String, Integer, JSONArray> {
 	private String getDayData(String Type, String swichtOne) {
 
 		String result = null;
-		/* 锟斤拷锟斤拷HTTP Post锟斤拷锟斤拷 */
-		HttpPost httpRequest = new HttpPost(uriAPI);
-		/*
-		 * Post锟斤拷锟斤拷锟斤拷锟酵憋拷锟斤拷锟斤拷锟斤拷锟斤拷NameValuePair[]锟斤拷锟介储锟斤拷
-		 */
-		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
-		paramList.add(new BasicNameValuePair("fun", Type));
-		paramList.add(new BasicNameValuePair("id", swichtOne));
-		paramList.add(new BasicNameValuePair("format", "json"));
+
+		// 创建HttpPost对象
+		HttpPost httpPost = new HttpPost(uriAPI);
+
+		// 设置HTTP POST请求参数必须用NameValuePair对象
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("fun", Type));
+		params.add(new BasicNameValuePair("id", swichtOne));
+		params.add(new BasicNameValuePair("format", "json"));
+
+		HttpResponse httpResponse = null;
+
+		HttpClient client = new DefaultHttpClient();
+		// 请求超时
+		client.getParams().setParameter(
+				CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
+		// 读取超时
+		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 5500);
+
 		try {
-			/* 锟斤拷锟斤拷HTTP request */
-			httpRequest.setEntity(new UrlEncodedFormEntity(paramList,
-					HTTP.UTF_8));
-			/* 取锟斤拷HTTP response */
-			HttpResponse httpResponse = new DefaultHttpClient()
-					.execute(httpRequest);
-			/* 锟斤拷状态锟斤拷为200 ok */
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				/* 取锟斤拷锟斤拷应锟街凤拷 */
-				String strResult = EntityUtils.toString(httpResponse
-						.getEntity());
-				result = strResult;
-				Log.v("=============result==============", "" + result);
+			// 设置httpPost请求参数
+			httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			// Log.v("==============httpPost:=============", "" + httpPost);
+			httpResponse = client.execute(httpPost);
+			// System.out.println(httpResponse.getStatusLine().getStatusCode());
+			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				// 第三步，使用getEntity方法活得返回结果
+				result = EntityUtils.toString(httpResponse.getEntity());
+				Log.e("==============result=============", result);
+				// T.displayToast(HttpURLActivity.this, "result:" + result);
 			}
-
 		} catch (ClientProtocolException e) {
-
 			e.printStackTrace();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
 		return result;
+
 	}
 
 	@Override
 	protected void onPostExecute(JSONArray result) {
-		// 杩斿洖HTML椤甸潰鐨勬椂锟� super.onPostExecute(result);
-	
-		if (result!= null) {
+		// 异步线程请求完之后返回的结果  super.onPostExecute(result);
+
+		if (result != null) {
 			event.DataLoadSuccess(result);
 		} else {
 			event.DataLoadFaild();
@@ -140,12 +148,12 @@ public class StarAsyncTaskHelper extends AsyncTask<String, Integer, JSONArray> {
 
 	@Override
 	protected void onPreExecute() {
-		// 浠诲姟鍚姩锛屽彲浠ュ湪杩欓噷鏄剧ず瀵硅瘽妗嗭紝杩欓噷UI绾跨▼澶勭悊
+		// 
 	}
 
 	@Override
 	protected void onProgressUpdate(Integer... values) {
-		// 鏇存柊杩涘害
+		// 
 	}
 
 }

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.nuannuan.common.asynctask.AsyncEvent;
+import com.nuannuan.common.utilitys.AnimationUtil;
 import com.nuannuan.star.activity.StarFortuneActivity;
 import com.nuannuan.star.asynctask.StarAsyncTaskHelper;
 import com.nuannuan.star.interfaces.StarAsyncEventIm;
@@ -28,7 +29,7 @@ import com.scau.feelingmusic.R;
 
 /**
  * 
- * @author Dave
+ * @author Eden
  * 
  */
 public class AllStarView extends ViewGroup implements View.OnClickListener {
@@ -329,14 +330,15 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	 * ������������ʱ����֮���ִ��չ���Ķ���Ч��
 	 */
 	private void clickCenterOut() {
-
-		Animation rotate = getRotateAm(0, 720, 2000);
+		// 转圈
+		Animation rotate = AnimationUtil.getRotateAm(0, 1440, 2000);
 		rotate.setDuration(2000);
 
-		Animation myAnimation_Scale = getScaleAm(0.0f, 4.6f, 0.0f, 4.6f, 2500);
+		Animation myAnimation_Scale = AnimationUtil.getScaleAm(0.0f, 4.6f,
+				0.0f, 4.6f, 2500);
 
 		AnimationSet set = new AnimationSet(false);
-		set.addAnimation(myAnimation_Scale);
+		// set.addAnimation(myAnimation_Scale);
 		set.addAnimation(rotate);
 		center.setAnimation(set);
 		center.startAnimation(set);
@@ -345,8 +347,9 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 		for (int i = 0; i < 12; i++) {
 			view = getChildAt(i);
 
-			animation = getTranslateAm(centerX - view.getLeft() - starRadius,
-					0, centerY - view.getTop() - starRadius, 0, 300);
+			animation = AnimationUtil.getTranslateAm(centerX - view.getLeft()
+					- starRadius, 0, centerY - view.getTop() - starRadius, 0,
+					300);
 
 			animation.setStartOffset(i * 100);
 			animation.setInterpolator(new OvershootInterpolator(2F));
@@ -379,7 +382,7 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 					// animation = MyAnimations.getRotateAnimation(0,
 					// 720,
 					// 600);
-					animation = getRotateAm(0, 720, 600);
+					animation = AnimationUtil.getRotateAm(0, 720, 600);
 					views.startAnimation(animation);
 				}
 
@@ -399,7 +402,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	 */
 	private void clickCenterIn() {
 
-		Animation mAnimation = getScaleAm(4.6f, 0f, 4.6f, 0f, 1800);
+		Animation mAnimation = AnimationUtil.getScaleAm(4.6f, 0f, 4.6f, 0f,
+				1800);
 		AnimationSet set = new AnimationSet(false);
 		set.addAnimation(mAnimation);
 		// set.addAnimation(rotate);
@@ -408,7 +412,7 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 		Animation animation;
 		for (int i = 0; i < 12; i++) {
 			view = getChildAt(i);
-			animation = getTranslateAm(0,
+			animation = AnimationUtil.getTranslateAm(0,
 					centerX - view.getLeft() - starRadius, 0,
 					centerY - view.getTop() - starRadius, 300);
 			animation.setStartOffset(i * 100);
@@ -429,8 +433,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	 * @param v
 	 */
 	private void clickStarButton(final View v) {
-		Animation alpha = getAlphaAm(1.0f, 0.0f, 800);
-		Animation scale = getScaleAm(0.0f, 1.6f, 0.0f, 1.6f, 400);
+		Animation alpha = AnimationUtil.getAlphaAm(1.0f, 0.0f, 800);
+		Animation scale = AnimationUtil.getScaleAm(0.0f, 1.6f, 0.0f, 1.6f, 400);
 		AnimationSet set = new AnimationSet(false);
 		set.addAnimation(scale);
 		set.addAnimation(alpha);
@@ -453,100 +457,33 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
-				 StarAsyncTaskHelper helper = new StarAsyncTaskHelper(c,
-				 new StarAsyncEventIm() {
-				
-				 @Override
-				 public void DataLoadSuccess(JSONArray arry) {
-				 // TODO Auto-generated method stub
-				 Log.v("========arry=========", ""+arry);
-				 Intent mIntent = new Intent();
-				 mIntent.setClass(c, StarFortuneActivity.class);
-				
-				 mIntent.putExtra("json", arry.toString());
-				 c.startActivity(mIntent);
-				 c.fileList();
-				
-				 }
-				
-				 @Override
-				 public void DataLoadFaild() {
-				 // TODO Auto-generated method stub
-				 Toast.makeText(c, "网络问题，请重新点击", Toast.LENGTH_SHORT).show();
-				 }
-				 });
-				 
-				 helper.execute(v.getId() + "");
+				StarAsyncTaskHelper helper = new StarAsyncTaskHelper(c,
+						new StarAsyncEventIm() {
+
+							@Override
+							public void DataLoadSuccess(JSONArray arry) {
+								// TODO Auto-generated method stub
+								Log.v("========arry=========", "" + arry);
+								Intent mIntent = new Intent();
+								mIntent.setClass(c, StarFortuneActivity.class);
+
+								mIntent.putExtra("json", arry.toString());
+								c.startActivity(mIntent);
+								c.fileList();
+
+							}
+
+							@Override
+							public void DataLoadFaild() {
+								// TODO Auto-generated method stub
+								Toast.makeText(c, "网络问题，请重新点击",
+										Toast.LENGTH_SHORT).show();
+							}
+						});
+
+				helper.execute(v.getId() + "");
 			}
 		});
 
 	}
-
-	/**
-	 * 
-	 * @param fromX
-	 * @param toX
-	 * @param fromY
-	 * @param toY
-	 * @param time
-	 * @return �õ����Ŷ���
-	 */
-	private Animation getScaleAm(float fromX, float toX, float fromY,
-			float toY, long time) {
-		ScaleAnimation myAnimation_Scale = new ScaleAnimation(fromX, toX,
-				fromY, toY, Animation.RELATIVE_TO_SELF, 0.5f,
-				Animation.RELATIVE_TO_SELF, 0.5f);
-		myAnimation_Scale.setFillAfter(false);
-		myAnimation_Scale.setDuration(time);
-		return myAnimation_Scale;
-	}
-
-	/**
-	 * 
-	 * @param fromX
-	 * @param toX
-	 * @param fromY
-	 * @param toY
-	 * @param time
-	 * @return �õ�λ�ƶ���
-	 */
-	private Animation getTranslateAm(float fromX, float toX, float fromY,
-			float toY, long time) {
-		TranslateAnimation animation = new TranslateAnimation(fromX, toX,
-				fromY, toY);
-		animation.setFillAfter(true);
-		animation.setDuration(time);
-		return animation;
-	}
-
-	/**
-	 * 
-	 * @param from
-	 * @param to
-	 * @param time
-	 * @return �õ�͸���仯�Ķ���
-	 */
-	private Animation getAlphaAm(float from, float to, long time) {
-		AlphaAnimation myAnimation_Alpha = new AlphaAnimation(from, to);
-		myAnimation_Alpha.setFillAfter(true);
-		myAnimation_Alpha.setDuration(time);
-		return myAnimation_Alpha;
-	}
-
-	/**
-	 * 
-	 * @param from
-	 * @param to
-	 * @param time
-	 * @return �õ���ת�Ķ���
-	 */
-	private Animation getRotateAm(float from, float to, long time) {
-		RotateAnimation rotate = new RotateAnimation(from, to,
-				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-				0.5f);
-		rotate.setDuration(time);
-		rotate.setFillAfter(true);
-		return rotate;
-	}
-
 }

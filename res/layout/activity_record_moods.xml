@@ -2,84 +2,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bmi_bg"
     android:orientation="vertical" >
 
-    <!--  -->
-
-    <LinearLayout
-        android:id="@+id/linTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <include
+        android:id="@+id/title_record_moods"
         android:layout_alignParentTop="true"
-        android:orientation="vertical" >
+        layout="@layout/included_addmood_title" />
 
-        <LinearLayout
-            android:id="@+id/lin_mood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
-            android:layout_marginTop="8dip"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/gif1"
-                android:layout_width="130dip"
-                android:layout_height="130dip"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="16dip" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="2" >
-
-        <Button
-            android:id="@+id/add_mood_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
-            android:layout_marginLeft="16dip"
-            android:layout_marginRight="8dip"
-            android:layout_weight="1"
-            android:text="直接记录" />
-
-        <Button
-            android:id="@+id/add_line_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="16dip"
-            android:layout_weight="1"
-            android:text="心情描述" />
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/linBtn"
-        android:layout_below="@id/linTop"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/title_record_moods"
+        android:background="@drawable/record_bg"
         android:orientation="vertical" >
 
-        <com.nuannuan.common.custom.controls.JazzyViewPager
-            android:id="@+id/jazzy_pager"
-            android:layout_width="match_parent"
-            android:layout_height="220dip" />
-
-        <LinearLayout
-            android:id="@+id/guide_bg"
+        <RelativeLayout
+            android:id="@+id/mood_info"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal" >
+            android:layout_marginBottom="30dip" >
+
+            <ImageView
+                android:id="@+id/mood_img_bg"
+                android:layout_width="130dip"
+                android:layout_height="130dip"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="50dip"
+                android:layout_marginTop="70dip" />
+
+            <ImageView
+                android:id="@+id/moods_pen_btn"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginTop="45dip"
+                android:layout_toRightOf="@id/mood_img_bg"
+                android:background="@drawable/btn_pen" />
+
+            <LinearLayout
+                android:layout_toRightOf="@id/moods_pen_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="180dip"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dip"
+                android:background="@drawable/mood_weather"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+"
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/mood_info"
+            android:layout_marginBottom="20dip"
+            android:orientation="vertical" >
+
+            <com.nuannuan.common.custom.controls.JazzyViewPager
+                android:id="@+id/jazzy_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dip" />
+
+            <LinearLayout
+                android:id="@+id/guide_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_lace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_record_moods"
+        android:background="@drawable/star_title_flower" />
 
 </RelativeLayout>

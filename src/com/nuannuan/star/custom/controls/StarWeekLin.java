@@ -127,7 +127,7 @@ public class StarWeekLin extends LinearLayout {
 			// day_title.setText("周运势");
 			String starname = name.get("cn").toString();
 			String date = arr.getString(9).toString();
-			initViewtitle(viewTitle, starname, date);// 初始化头部的时间和星座
+//			initViewtitle(viewTitle, starname, date);// 初始化头部的时间和星座
 
 			bar0.setRating((Integer) json0.get("rank"));
 
@@ -174,45 +174,18 @@ public class StarWeekLin extends LinearLayout {
 		else if (starname.equals("双鱼座"))
 			a = 12;
 		switch (a) {
-		case 1:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 2:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 3:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 4:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 5:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 6:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 7:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 8:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 9:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 10:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 11:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 12:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		default:
-			text221.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
+		case 1:text221.setBackgroundResource(R.drawable.star_baiyang);break;
+		case 2:text221.setBackgroundResource(R.drawable.star_jinniu);break;
+		case 3:text221.setBackgroundResource(R.drawable.star_shuangzi);break;
+		case 4:text221.setBackgroundResource(R.drawable.star_juxie);break;
+		case 5:text221.setBackgroundResource(R.drawable.star_shizi);break;
+		case 6:text221.setBackgroundResource(R.drawable.star_chunv);break;
+		case 7:text221.setBackgroundResource(R.drawable.star_tianping);break;
+		case 8:text221.setBackgroundResource(R.drawable.star_tianxie);break;
+		case 9:text221.setBackgroundResource(R.drawable.star_sheshou);break;
+		case 10:text221.setBackgroundResource(R.drawable.star_mojie);break;
+		case 11:text221.setBackgroundResource(R.drawable.star_shuiping);break;
+		case 12:text221.setBackgroundResource(R.drawable.star_shuangyu);break;
 		}
 		// text21.setBackgroundResource(R.drawable.star_title_xingzuo);
 		// text20.setBackgroundColor(color.hotpink);

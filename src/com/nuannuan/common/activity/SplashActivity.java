@@ -36,7 +36,7 @@ public class SplashActivity extends Activity implements OnPageChangeListener,
 		// 隐去标题栏（应用程序的名字）
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_splash);
-		setupJazziness(TransitionEffect.CubeOut);
+		setupJazziness(TransitionEffect.Standard);
 
 		mButton = (Button) findViewById(R.id.guide_btn);
 

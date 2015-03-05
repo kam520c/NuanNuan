@@ -88,10 +88,17 @@ public class TrendView extends ViewGroup implements View.OnClickListener {
 		PathEffect effects = new DashPathEffect(
 				new float[] { 1, 4, 2, 2, 5, 20 }, 1);
 		mLinePaint1.setPathEffect(effects);
-		mLinePaint1.setStrokeWidth(25);
+		mLinePaint1.setStrokeWidth(20);
 		mLinePaint1.setStyle(Style.STROKE);
-		LinearGradient lg=new LinearGradient(0,0,100,100,Color.RED,Color.GREEN,Shader.TileMode.MIRROR); 
-		mLinePaint1.setShader(lg);
+		// LinearGradient lg = new LinearGradient(0, 0, 100, 100, Color.RED,
+		// Color.GREEN, Shader.TileMode.MIRROR);
+		// mLinePaint1.setShader(lg);
+
+		mLinePaint2 = new Paint();
+		mLinePaint2.setColor(0xffFF6699);
+		mLinePaint2.setStrokeWidth(20);
+		mLinePaint2.setAntiAlias(true);
+		mLinePaint2.setStyle(Style.FILL);
 	}
 
 	public void setPosition(int a, int b, int c, int d) {
@@ -257,7 +264,10 @@ public class TrendView extends ViewGroup implements View.OnClickListener {
 
 						path2.quadTo((float) (point1.x * 0.90), point1.y,
 								point2.x, point2.y); // 设置贝塞尔曲线的控制点坐标和终点坐标
-						canvas.drawPath(path2, mLinePaint1);// 画出贝塞尔曲线
+						// canvas.drawPath(path2, mLinePaint1);// 画出贝塞尔曲线
+
+						canvas.drawLine(point1.x, point1.y, point2.x, point2.y,
+								mLinePaint2);// 画出直线
 					}
 				}
 			}
@@ -272,6 +282,8 @@ public class TrendView extends ViewGroup implements View.OnClickListener {
 
 			if (i != topTem.size() - 1) {
 				space1 = (topTem.get(i + 1)) * temspace;
+				canvas.drawCircle(x[j], height + space,
+						(float) (1.2 * imagSize) / 2, mLinePaint2); // 画圆
 				if (j % 4 == 0 && j != 0) {
 				} else {
 					// ��ͬһ��֮�������
@@ -284,11 +296,24 @@ public class TrendView extends ViewGroup implements View.OnClickListener {
 							(float) (height * 1.3 + space), x[j + 1], height
 									+ space1); // 设置贝塞尔曲线的控制点坐标和终点坐标
 
-					canvas.drawPath(path2, mLinePaint1);// 画出贝塞尔曲线
+					// canvas.drawPath(path2, mLinePaint1);// 画出贝塞尔曲线
+
+					canvas.drawLine(x[j], height + space, x[j + 1], height
+							+ space1, mLinePaint2);// 画出直线
+				}
+				//最后一个圈需要做判断
+			} else {
+				if (topTem.size() == 31) {
+					canvas.drawCircle(x[4 - j], height + space,
+							(float) (1.2 * imagSize) / 2, mLinePaint2); // 画圆
+				} else {
+
+					canvas.drawCircle(x[j], height + space,
+							(float) (1.2 * imagSize) / 2, mLinePaint2); // 画圆
 				}
 			}
-
 			j++;
+
 		}
 	}
 

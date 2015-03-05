@@ -1,6 +1,5 @@
 package com.nuannuan.mood.utilitys;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,16 +16,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nuannuan.common.sqlite.MoodDatabaseHelper;
 import com.nuannuan.mood.activity.RecordMoodsActivity;
-import com.nuannuan.mood.bean.MoodBean;
 import com.scau.feelingmusic.R;
 import com.scau.feelingmusic.R.anim;
 
@@ -175,6 +173,20 @@ public class MoodUtility {
 	}
 
 	/**
+	 * 存入当天的心情
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static void ThatDayMoodForSave(Context context, String json) {
+		long oldTime = readTime(context);
+		Calendar c = Calendar.getInstance();
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		Log.v("===============day=============", "" + day);
+		WriteJsonMood(context, oldTime, day, json);
+	}
+
+	/**
 	 * 
 	 * @param context
 	 * @return long 返回所有时间搓的对象
@@ -217,23 +229,16 @@ public class MoodUtility {
 		dialog = new com.nuannuan.mood.custom.controls.MyDialog(context,
 				R.style.MyDialog);
 		dialog.setDialog(R.layout.layout_dialog);
-
-		dialog.txt_Title.setText("");
-		dialog.txt_Content.setText("");
+		// dialog.txt_Title.setText("");
+		// dialog.txt_Content.setText("");
 		gifList();
-		dialog.btn_Ok.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
-		// 鍙栨秷鎸夐挳鍝嶅簲浜嬩欢
-		dialog.btn_Close.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
+
+		// dialog.btn_Ok.setOnClickListener(new OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// dialog.dismiss();
+		// }
+		// });
 
 		Date nowDate = new Date();
 		Date date_old = new Date(oldtimes);
@@ -261,24 +266,7 @@ public class MoodUtility {
 			if (now_times - new_times > 0) {
 
 				if (moodJson != null) {
-					String mood = "";
-					try {
-						mood = (String) moodJson.get("mood");
-						JSONObject obj = new JSONObject(mood);
-						int witchGif = obj.getInt("gif");
-						// 城市箭头补间动画
-						ImageView imageView = dialog.imageView;
-						imageView.setBackgroundResource(gifList.get(witchGif));
-						AnimationDrawable ad = (AnimationDrawable) imageView
-								.getBackground();
-						ad.start();
-						dialog.show();
-
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					Toast.makeText(context, "mood", Toast.LENGTH_SHORT).show();
+					inintDialog(moodJson);
 				} else {
 					Toast.makeText(context, "亲，过去了，就让他成为美好的回忆吧",
 							Toast.LENGTH_SHORT).show();
@@ -304,25 +292,9 @@ public class MoodUtility {
 			}
 		} else {
 			if (moodJson != null) {
-				String mood = "";
-				try {
-					mood = (String) moodJson.get("mood");
-					JSONObject obj = new JSONObject(mood);
-					int witchGif = obj.getInt("gif");
-					// 城市箭头补间动画
-					ImageView imageView = dialog.imageView;
-					imageView.setBackgroundResource(gifList.get(witchGif));
-					AnimationDrawable ad = (AnimationDrawable) imageView
-							.getBackground();
-					ad.start();
-					dialog.show();
 
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Toast.makeText(context, "mood" + mood, Toast.LENGTH_SHORT)
-						.show();
+				inintDialog(moodJson);
+
 			} else {
 				Toast.makeText(context, "亲，过去了，就让他成为美好的回忆吧", Toast.LENGTH_SHORT)
 						.show();
@@ -411,6 +383,38 @@ public class MoodUtility {
 					Toast.LENGTH_SHORT).show();
 		}
 
+	}
+
+	/**
+	 * 初始化dialog
+	 * 
+	 * @param moodJson
+	 */
+	private static void inintDialog(JSONObject moodJson) {
+		String mood = "";
+		String weather = "";
+		try {
+			mood = (String) moodJson.get("mood");
+			JSONObject obj = new JSONObject(mood);
+			int witchGif = obj.getInt("gif");
+			mood = obj.getString("mood");
+			weather = obj.getString("weather");
+			// 城市箭头补间动画
+			ImageView imageView = dialog.imageView;
+			imageView.setBackgroundResource(gifList.get(witchGif));
+			AnimationDrawable ad = (AnimationDrawable) imageView
+					.getBackground();
+			ad.start();
+			TextView moodTxt = dialog.txt_Content;
+			TextView weatherTxt = dialog.txt_Title;
+			moodTxt.setText(mood);
+			weatherTxt.setText(weather);
+			dialog.show();
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

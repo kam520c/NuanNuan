@@ -162,45 +162,18 @@ public class StarTomorrowLin extends LinearLayout {
 		else if (starname.equals("双鱼座"))
 			a = 12;
 		switch (a) {
-		case 1:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 2:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 3:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 4:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 5:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 6:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 7:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 8:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 9:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 10:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 11:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		case 12:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
-		default:
-			text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-			break;
+		case 1:text21.setBackgroundResource(R.drawable.star_baiyang);break;
+		case 2:text21.setBackgroundResource(R.drawable.star_jinniu);break;
+		case 3:text21.setBackgroundResource(R.drawable.star_shuangzi);break;
+		case 4:text21.setBackgroundResource(R.drawable.star_juxie);break;
+		case 5:text21.setBackgroundResource(R.drawable.star_shizi);break;
+		case 6:text21.setBackgroundResource(R.drawable.star_chunv);break;
+		case 7:text21.setBackgroundResource(R.drawable.star_tianping);break;
+		case 8:text21.setBackgroundResource(R.drawable.star_tianxie);break;
+		case 9:text21.setBackgroundResource(R.drawable.star_sheshou);break;
+		case 10:text21.setBackgroundResource(R.drawable.star_mojie);break;
+		case 11:text21.setBackgroundResource(R.drawable.star_shuiping);break;
+		case 12:text21.setBackgroundResource(R.drawable.star_shuangyu);break;
 		}
 		// text21.setBackgroundResource(R.drawable.star_title_xingzuo);
 		// text20.setBackgroundColor(color.hotpink);

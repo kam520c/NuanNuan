@@ -2,14 +2,206 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bmi_bg"
+    android:background="#ffffff"
     android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout 
+    android:id="@+id/layout_star_fortune_titile"
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    <RelativeLayout 
+        android:id="@+id/layout_star_fortune_titile1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:background="@drawable/star_title_head">
+        
+        <RelativeLayout
+            android:id="@+id/date"
+            android:layout_width="154dip"
+            android:layout_height="75dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="17dip"
+            android:layout_marginTop="14dip" 
+            android:layout_marginBottom="12dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/star_title_date"
+            >
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="13dip"
+                android:layout_marginTop="16dip" 
+                android:textColor="@color/coolpink"
+                android:textSize="18dip" />
+
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/year"
+                android:layout_toRightOf="@id/year"
+                android:textColor="@color/coolpink"
+                android:textSize="18dip" />
+
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/month"
+                android:layout_marginTop="11dip"
+                android:textColor="@color/coolpink"
+                android:textSize="53dip" />
+
+            <TextView
+                android:id="@+id/week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/year"
+                android:layout_below="@id/year"
+                android:layout_marginLeft="4dip"
+                android:textColor="@color/coolpink"
+                android:text="星期六"
+                android:textSize="22dip" />
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="107dip"
+            android:layout_height="86dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dip">
+            
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+            
+        </RelativeLayout>
+        </RelativeLayout>
+        
+<LinearLayout 
+        android:id="@+id/layout_star_fortune_titile2"
+        android:layout_height="20dip"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/layout_star_fortune_titile1"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="10dip"
+        android:orientation="horizontal">
+        
+        <TextView
+            android:id="@+id/title_today"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/today_fortune" 
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+        <TextView 
+            android:id="@+id/title_tomorrow"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tomorrow_fortune"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+        <TextView 
+            android:id="@+id/title_week"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/week_fortune"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+        <TextView 
+            android:id="@+id/title_month"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/month_fortune"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+        <TextView 
+            android:id="@+id/title_year"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/year_fortune"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+        <TextView 
+            android:id="@+id/title_love"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/love_fortune"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="13dip"
+            />
+        
+    </LinearLayout>
+    
+     <!-- <LinearLayout
+        android:id="@+id/layout_star_fortune_titile3"
+        android:layout_height="15dip"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/layout_star_fortune_titile2"
+        android:orientation="horizontal">
+        
+        <TextView 
+            android:id="@+id/title_flower"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/star_title_flower"/>
+            "
+        </LinearLayout> -->
+</RelativeLayout>
+
+<LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/star_background">
+<TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="20dip"
+            android:layout_marginBottom="5dip"
+            android:background="@drawable/star_title_flower"/>
+        
     <com.nuannuan.common.custom.controls.JazzyViewPager
         android:id="@+id/jazzy_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent" 
+        android:layout_marginBottom="40dip"/>
+ </LinearLayout>
+ 
+    </LinearLayout>
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >

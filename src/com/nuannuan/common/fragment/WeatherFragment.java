@@ -3,10 +3,14 @@ package com.nuannuan.common.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +29,7 @@ import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.common.custom.controls.JazzyViewPager.TransitionEffect;
 import com.nuannuan.common.utilitys.Rotate3dAnimation;
 import com.nuannuan.mood.activity.LineEditActivity;
+import com.nuannuan.mood.activity.RecordMoodsActivity;
 import com.nuannuan.weather.activity.AddCityActivity;
 import com.nuannuan.weather.adapter.WeatherAdapter;
 import com.nuannuan.weather.interfaces.WeatherIm;
@@ -47,7 +52,9 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 	private LinearLayout mImageView1 = null;
 	private LinearLayout mImageView2 = null;
 	private LinearLayout mStartAnimView = null;
-	private String weather=null;
+	private String weather = null;
+	private boolean isAddNum=false;
+	private boolean isClick=false;
 
 	public WeatherFragment(ArrayList<InhaleView> listInhale) {
 		listInhale = listLin;
@@ -55,6 +62,13 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 
 	public WeatherFragment() {
 
+	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		isClick=false;
+		super.onPause();
 	}
 
 	@Override
@@ -80,7 +94,7 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 		AddBtn.setOnClickListener(this);
 		mImageView1 = (LinearLayout) view.findViewById(R.id.home_gif);
 		mImageView1.setOnClickListener(this);
-		initAnim(gifList.get(9));
+		initAnim(gifList.get(10));
 		mImageView2 = (LinearLayout) view.findViewById(R.id.home_gif2);
 		mContainer = view.findViewById(R.id.container);
 		mStartAnimView = mImageView1;
@@ -113,7 +127,6 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 		WeatherAdapter adapter = new WeatherAdapter(listLin, mJazzy);
 		mJazzy.setAdapter(adapter);
 		mJazzy.setPageMargin(30);
-		// �󶨻ص�
 		mJazzy.setOnPageChangeListener(this);
 	}
 
@@ -142,6 +155,30 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 		mImageView1.setBackgroundResource(anim);
 		AnimationDrawable ad = (AnimationDrawable) mImageView1.getBackground();
 		ad.start();
+	}
+	
+	private String getJsonForMood() {
+		String mood = "";
+
+		JSONObject json = new JSONObject();
+		try {
+			if(num==0){
+				if(isClick){
+					json.put("gif", num);
+				}else{
+					json.put("gif", 10);
+				}
+			}else{
+				json.put("gif", num-1);
+			}
+			json.put("mood", mood);
+			json.put("weather", "weather");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mood = json.toString();
+		return mood;
 	}
 
 	/**
@@ -237,28 +274,31 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 			startActivity(mIntent);
 			break;
 		case R.id.home_gif:
+			isClick=true;
 			if (num < gifList.size()) {
 				if (num % 2 == 1) {
 					mImageView1.setBackgroundResource(gifList.get(num));
 				} else {
 					mImageView2.setBackgroundResource(gifList.get(num));
 				}
-
 				mCenterX = mContainer.getWidth() / 2;
 				mCenterY = mContainer.getHeight() / 2;
 				getDepthZ();
 				applyRotation(mStartAnimView, 0, 90);
-				num = num + 1;
-				// initAnim(gifList.get(num));
-				if (num > gifList.size()) {
+				if (num == gifList.size() - 1) {
 					num = 0;
+					isAddNum=true;
+				}
+				if(isAddNum){
+					isAddNum=false;
+				}else{
+					num = num + 1;
 				}
 			}
 			break;
 		case R.id.pen_btn:
 			Intent intent = new Intent(home, LineEditActivity.class);
-			intent.putExtra("num", num);
-			intent.putExtra("weather", weather);
+			intent.putExtra("mood", getJsonForMood());
 			startActivity(intent);
 			break;
 		default:
@@ -332,7 +372,7 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 			mStartAnimView.requestFocus();
 
 			Rotate3dAnimation rotation = new Rotate3dAnimation(-90, 0,
-					mCenterX, mCenterY, mDepthZ, false);
+					 mCenterX, mCenterY, mDepthZ, false);
 
 			rotation.setDuration(mDuration);
 			rotation.setFillAfter(true);

@@ -2,27 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bmi_bg"
-    android:orientation="vertical" >
+    android:background="@drawable/bmi_bg" >
 
-    <!--  -->
-
-    <LinearLayout
+    <Button
+        android:id="@+id/deleteEdit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:text="删除" />
 
     <com.nuannuan.mood.custom.controls.LineEditText
         android:id="@+id/edit_mood"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@id/deleteEdit"
         android:background="@drawable/edit_green"
+        android:gravity="left"
         android:inputType="textNoSuggestions|textMultiLine"
         android:minLines="10"
         android:padding="5dip"
-        android:gravity="left"
         android:text="hell"
         android:textColor="@color/purple"
         android:textSize="28sp" />

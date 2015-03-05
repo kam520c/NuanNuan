@@ -3,24 +3,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".AllStarActivity" >
+    tools:context=".AllStarActivity" > 
 
-    <include layout="@layout/layout_star_fortune_title" />
 
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="30dip"
-        android:background="@drawable/star_background"
-        android:paddingBottom="40dip"
-        android:paddingTop="25dip"
         android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
-            android:layout_marginBottom="30dip"
             android:orientation="vertical" >
 
             <!--
@@ -77,7 +76,7 @@
                     <RatingBar
                         android:id="@+id/rtb0"
                         style="@style/ratingbar_style"
-                        android:layout_height="25dip" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -97,7 +96,7 @@
                     <RatingBar
                         android:id="@+id/rtb1"
                         style="@style/ratingbar_style"
-                        android:layout_height="25dip" />
+                        android:layout_height="28dip" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,7 +116,7 @@
                     <RatingBar
                         android:id="@+id/rtb2"
                         style="@style/ratingbar_style"
-                        android:layout_height="25dip" />
+                        android:layout_height="28dip" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,7 +136,7 @@
                     <RatingBar
                         android:id="@+id/rtb3"
                         style="@style/ratingbar_style"
-                        android:layout_height="25dip" />
+                        android:layout_height="28dip" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -266,5 +265,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
+</LinearLayout>
 </LinearLayout>
