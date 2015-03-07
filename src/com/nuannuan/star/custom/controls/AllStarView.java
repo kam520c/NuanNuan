@@ -8,28 +8,23 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
-import android.view.animation.RotateAnimation;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.nuannuan.common.asynctask.AsyncEvent;
-import com.nuannuan.common.utilitys.AnimationUtil;
+import com.nuannuan.common.R;
+import com.nuannuan.common.utility.AnimationUtil;
 import com.nuannuan.star.activity.StarFortuneActivity;
 import com.nuannuan.star.asynctask.StarAsyncTaskHelper;
 import com.nuannuan.star.interfaces.StarAsyncEventIm;
-import com.scau.feelingmusic.R;
 
 /**
  * 
- * @author Eden
+ * @author Kam & Eden
  * 
  */
 public class AllStarView extends ViewGroup implements View.OnClickListener {
@@ -39,9 +34,9 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	private int width;
 	private int heigth;
 	private int Radius;
-	private int starRadius;
-	private int centerX = width / 2;
-	private int centerY = heigth / 2;
+	private int starRadius;//12个星座的半径
+	private int centerX = width / 2;//控件中心点的宽
+	private int centerY = heigth / 2;//控件中心点的高
 	private boolean isButtonShow = false;
 
 	private ImageView center;
@@ -63,39 +58,59 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	private int centerRadius;
 	private int pxWidth;
 
+	/**
+	 * 构造函数，初始化自定义控件
+	 * @param context指向activity的指针
+	 */
 	public AllStarView(Context context) {
 		super(context);
 		this.c = context;
-		init();
 
 	}
-
+	
+	/**
+	 * 构造函数，初始化自定义控件
+	 * @param context指向activity的指针
+	 */
 	public AllStarView(Context context, AttributeSet attr) {
 		super(context, attr);
 		this.c = context;
-		init();
 
 	}
 
-	private void init() {
-
-	}
-
-	@Override
+	/**
+	 * 设定整个控件的大小
+	 * @param widthMeasureSpec 是xml里面传进来的宽度
+	 * @param heightMeasureSpec 是xml里面传进来的高度
+	 */
+	@Override  //继承类或者接口里面的抽象方法，可选择性实现，系统自动调用
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		//set控件的大小，整块
 		setMeasuredDimension(width, heigth);
 	}
 
+	/**
+	 * set自定义控件的高度和宽度
+	 * @param width 为获取到的手机屏幕的宽
+	 */
 	public void setWidth(int width) {
 		this.width = width;
-		heigth = width + width / 3;
-		starRadius = width / 12;
-		centerRadius = width / 10;
+		heigth = width ;
+		starRadius = width / 12;//12个星座的半径大小，可变
+		centerRadius = width / 10; //中心点的半径大小
 		pxWidth = centerRadius - starRadius;
 	}
 
+	/**
+	 * 设定各星座的坐标位置，layout是来控制ltrb，控制每个星座的具体位置和大小
+	 * @param changed 子控件是否改变位置
+	 * @param l 左
+	 * @param r 右
+	 * @param t 上
+	 * @param b 下
+	 */
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		// TODO Auto-generated method stub
@@ -128,8 +143,9 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		baiyang = new ImageView(c);
 		baiyang.setBackgroundResource(R.drawable.star_1_baiyang);
-		PX = (int) (Radius * Math.cos(getRadian(60)));
-		PY = (int) (Radius * Math.sin(getRadian(60)));
+		PX = (int) (Radius * Math.cos(getRadian(75)));
+		PY = (int) (Radius * Math.sin(getRadian(75)));
+		
 		baiyang.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		baiyang.setId(0);
@@ -138,8 +154,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		jinniu = new ImageView(c);
 		jinniu.setBackgroundResource(R.drawable.star_2_jin_niu);
-		PX = (int) (Radius * Math.cos(getRadian(30)));
-		PY = (int) (Radius * Math.sin(getRadian(30)));
+		PX = (int) (Radius * Math.cos(getRadian(45)));
+		PY = (int) (Radius * Math.sin(getRadian(45)));
 		jinniu.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		jinniu.setId(1);
@@ -148,8 +164,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		shuangzi = new ImageView(c);
 		shuangzi.setBackgroundResource(R.drawable.star_3_shuang_zi);
-		PX = (int) (Radius * Math.cos(getRadian(0)));
-		PY = (int) (Radius * Math.sin(getRadian(0)));
+		PX = (int) (Radius * Math.cos(getRadian(15)));
+		PY = (int) (Radius * Math.sin(getRadian(15)));
 		shuangzi.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		shuangzi.setId(2);
@@ -158,8 +174,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		juxie = new ImageView(c);
 		juxie.setBackgroundResource(R.drawable.star_4_ju_xie);
-		PX = (int) (Radius * Math.cos(getRadian(30)));
-		PY = (int) (-Radius * Math.sin(getRadian(30)));
+		PX = (int) (Radius * Math.cos(getRadian(15)));
+		PY = (int) (-Radius * Math.sin(getRadian(15)));
 		juxie.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		juxie.setId(3);
@@ -168,8 +184,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		shizi = new ImageView(c);
 		shizi.setBackgroundResource(R.drawable.star_5_shi_zi);
-		PX = (int) (Radius * Math.cos(getRadian(60)));
-		PY = (int) (-Radius * Math.sin(getRadian(60)));
+		PX = (int) (Radius * Math.cos(getRadian(45)));
+		PY = (int) (-Radius * Math.sin(getRadian(45)));
 		shizi.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		shizi.setId(4);
@@ -178,8 +194,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		chunv = new ImageView(c);
 		chunv.setBackgroundResource(R.drawable.star_6_chu_nv);
-		PX = (int) (Radius * Math.cos(getRadian(90)));
-		PY = (int) (-Radius * Math.sin(getRadian(90)));
+		PX = (int) (Radius * Math.cos(getRadian(75)));
+		PY = (int) (-Radius * Math.sin(getRadian(75)));
 		chunv.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		chunv.setId(5);
@@ -188,8 +204,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		tianping = new ImageView(c);
 		tianping.setBackgroundResource(R.drawable.star_7_tian_ping);
-		PX = (int) (-Radius * Math.cos(getRadian(60)));
-		PY = (int) (-Radius * Math.sin(getRadian(60)));
+		PX = (int) (-Radius * Math.cos(getRadian(75)));
+		PY = (int) (-Radius * Math.sin(getRadian(75)));
 		tianping.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		tianping.setId(6);
@@ -198,8 +214,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		tianxie = new ImageView(c);
 		tianxie.setBackgroundResource(R.drawable.star_8_tian_xie);
-		PX = (int) (-Radius * Math.cos(getRadian(30)));
-		PY = (int) (-Radius * Math.sin(getRadian(30)));
+		PX = (int) (-Radius * Math.cos(getRadian(45)));
+		PY = (int) (-Radius * Math.sin(getRadian(45)));
 		tianxie.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		tianxie.setId(7);
@@ -208,8 +224,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		sheshou = new ImageView(c);
 		sheshou.setBackgroundResource(R.drawable.star_9_she_shou);
-		PX = (int) (-Radius * Math.cos(getRadian(0)));
-		PY = (int) (-Radius * Math.sin(getRadian(0)));
+		PX = (int) (-Radius * Math.cos(getRadian(15)));
+		PY = (int) (-Radius * Math.sin(getRadian(15)));
 		sheshou.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		sheshou.setId(8);
@@ -218,8 +234,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		mojie = new ImageView(c);
 		mojie.setBackgroundResource(R.drawable.star_10_mo_jie);
-		PX = (int) (-Radius * Math.cos(getRadian(30)));
-		PY = (int) (Radius * Math.sin(getRadian(30)));
+		PX = (int) (-Radius * Math.cos(getRadian(15)));
+		PY = (int) (Radius * Math.sin(getRadian(15)));
 		mojie.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		mojie.setId(9);
@@ -228,8 +244,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		shuiping = new ImageView(c);
 		shuiping.setBackgroundResource(R.drawable.star_11_shui_ping);
-		PX = (int) (-Radius * Math.cos(getRadian(60)));
-		PY = (int) (Radius * Math.sin(getRadian(60)));
+		PX = (int) (-Radius * Math.cos(getRadian(45)));
+		PY = (int) (Radius * Math.sin(getRadian(45)));
 		shuiping.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		shuiping.setId(10);
@@ -238,8 +254,8 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 		shuangyu = new ImageView(c);
 		shuangyu.setBackgroundResource(R.drawable.star_12_shuang_yu);
-		PX = (int) (-Radius * Math.cos(getRadian(90)));
-		PY = (int) (Radius * Math.sin(getRadian(90)));
+		PX = (int) (-Radius * Math.cos(getRadian(75)));
+		PY = (int) (Radius * Math.sin(getRadian(75)));
 		shuangyu.layout(centerX + PX - starRadius, centerY - PY - starRadius,
 				centerX + PX + starRadius, centerY - PY + starRadius);
 		shuangyu.setId(11);
@@ -265,7 +281,11 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 		// addView(centerAdd);
 		// }
 	}
-
+	/**
+	 * from angle to radian
+	 * @param angle
+	 * @return
+	 */
 	private double getRadian(int angle) {
 		double radian = 3.14159 * angle / 180;
 		return radian;
@@ -327,32 +347,34 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	}
 
 	/**
-	 * ������������ʱ����֮���ִ��չ���Ķ���Ч��
+	 *clickCenterOut是12个控件飞出来
 	 */
 	private void clickCenterOut() {
 		// 转圈
 		Animation rotate = AnimationUtil.getRotateAm(0, 1440, 2000);
 		rotate.setDuration(2000);
 
+		//设置中心点的按钮的变大
 		Animation myAnimation_Scale = AnimationUtil.getScaleAm(0.0f, 4.6f,
 				0.0f, 4.6f, 2500);
 
 		AnimationSet set = new AnimationSet(false);
-		// set.addAnimation(myAnimation_Scale);
-		set.addAnimation(rotate);
+		// set.addAnimation(myAnimation_Scale); //放大效果
+		set.addAnimation(rotate);//旋转效果
 		center.setAnimation(set);
 		center.startAnimation(set);
 
 		Animation animation = null;
 		for (int i = 0; i < 12; i++) {
-			view = getChildAt(i);
+			view = getChildAt(i);//得到ViewGroup的子控件
 
+			//getTranslateAm函数是飞出来的效果
 			animation = AnimationUtil.getTranslateAm(centerX - view.getLeft()
 					- starRadius, 0, centerY - view.getTop() - starRadius, 0,
 					300);
 
-			animation.setStartOffset(i * 100);
-			animation.setInterpolator(new OvershootInterpolator(2F));
+			animation.setStartOffset(i * 100);//设置动画延迟，就是一个一个飞出来，每个延迟0.1s
+			animation.setInterpolator(new OvershootInterpolator(2F));//飞出去的时候偏离轨道再弹回来，偏离2F
 
 			view.startAnimation(animation);
 
@@ -378,7 +400,7 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 
 				// view.clearAnimation();
 				for (int i = 0; i < 12; i++) {
-					View views = getChildAt(i);
+					View views = getChildAt(i);//得到ViewGroup的子控件
 					// animation = MyAnimations.getRotateAnimation(0,
 					// 720,
 					// 600);
@@ -398,12 +420,11 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	}
 
 	/**
-	 * ������չ����ʱ����֮���ִ�������Ķ���Ч��
+	 *clickCenterIn是12个控件飞进去
 	 */
 	private void clickCenterIn() {
 
-		Animation mAnimation = AnimationUtil.getScaleAm(4.6f, 0f, 4.6f, 0f,
-				1800);
+		Animation mAnimation = AnimationUtil.getRotateAm(1440, 0, 1800);
 		AnimationSet set = new AnimationSet(false);
 		set.addAnimation(mAnimation);
 		// set.addAnimation(rotate);
@@ -433,9 +454,9 @@ public class AllStarView extends ViewGroup implements View.OnClickListener {
 	 * @param v
 	 */
 	private void clickStarButton(final View v) {
-		Animation alpha = AnimationUtil.getAlphaAm(1.0f, 0.0f, 800);
-		Animation scale = AnimationUtil.getScaleAm(0.0f, 1.6f, 0.0f, 1.6f, 400);
-		AnimationSet set = new AnimationSet(false);
+		Animation alpha = AnimationUtil.getAlphaAm(1.0f, 0.0f, 800);//变透明，1为真，0为透明
+		Animation scale = AnimationUtil.getScaleAm(0.0f, 1.6f, 0.0f, 1.6f, 400);//放大
+		AnimationSet set = new AnimationSet(false);//可同时set两个动画效果，两个动画效果同时执行
 		set.addAnimation(scale);
 		set.addAnimation(alpha);
 		v.setAnimation(set);

@@ -1,30 +1,10 @@
 package com.nuannuan.mood.custom.controls;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.scau.feelingmusic.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.PathEffect;
-import android.graphics.Paint.FontMetrics;
 import android.graphics.Rect;
-import android.text.Layout;
-import android.text.Selection;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.style.URLSpan;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.MotionEvent;
 import android.widget.EditText;
 
 public class LineEditText extends EditText {

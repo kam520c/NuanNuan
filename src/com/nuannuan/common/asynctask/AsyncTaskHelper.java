@@ -7,8 +7,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
 
-import com.nuannuan.common.utilitys.AsyncTaskUtility;
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
+import com.nuannuan.common.utility.AsyncTaskUtility;
 
 public class AsyncTaskHelper extends AsyncTask<String, Integer, String>{
 	private AsyncEvent event;

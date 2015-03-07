@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bmi_bg"
     android:orientation="vertical"
     >
 
@@ -18,8 +17,9 @@
 
             <com.nuannuan.star.custom.controls.AllStarView
                 android:id="@+id/allStarView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/star_fragmeny_bg_flower"
                 />
         </LinearLayout>
     </ScrollView>

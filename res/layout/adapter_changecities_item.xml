@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<FrameLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <ImageView
+        android:id="@+id/bg_image"
+        android:layout_width="80dip"
+        android:layout_height="120dip"
+        android:background="@drawable/bg_changecity_button"
+        android:layout_gravity="center_horizontal" >
+    </ImageView>
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="5dip"
+        android:textSize="16dip" >
+    </TextView>
+    
+    
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="62dip"
+        android:layout_height="60dip"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip">
+    </ImageView>
+    
+    
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:layout_alignLeft="@id/title"
+        android:textColor="@color/sys_background"
+        android:textStyle="bold"
+        android:textSize="16dip" >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weather"
+        android:layout_alignLeft="@id/title"
+        android:textColor="@color/sys_background"
+        android:textStyle="bold"
+        android:textSize="16dip" >
+    </TextView>
+    
+</RelativeLayout>
+</FrameLayout>
+</LinearLayout>

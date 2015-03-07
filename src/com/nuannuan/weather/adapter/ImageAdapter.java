@@ -22,8 +22,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
+import com.nuannuan.common.R;
 import com.nuannuan.weather.custom.controls.GalleryView;
-import com.scau.feelingmusic.R;
 
 public class ImageAdapter extends BaseAdapter {
 	private ImageView[] mImages; // 保存倒影图片的数组
@@ -32,6 +32,12 @@ public class ImageAdapter extends BaseAdapter {
 	public List<Map<String, Object>> list;
 	private int height;
 
+	public void refreshAdapter(boolean isRefresh) {
+		if (isRefresh) {
+			notifyDataSetChanged();
+		}
+	}
+	
 	public Integer[] imgs = { R.drawable.image01, R.drawable.image02,
 			R.drawable.image03, R.drawable.image04, R.drawable.image05 };
 	public String[] titles = { "01", "02", "03", "04", "05", "06", "07" };
@@ -69,7 +75,9 @@ public class ImageAdapter extends BaseAdapter {
 					sMatrix, true);
 
 			// 是否原图片数据，节省内存
-			originalImage.recycle();
+			if (originalImage != null) {
+				originalImage.recycle();
+			}
 
 			int mwidth = miniBitmap.getWidth();
 			int mheight = miniBitmap.getHeight();
@@ -87,6 +95,10 @@ public class ImageAdapter extends BaseAdapter {
 			canvas.drawRect(0, mheight, mwidth, mheight + reflectionGap, paint); // 绘制原图与倒影的间距
 			canvas.drawBitmap(reflectionImage, 0, mheight + reflectionGap, null); // 绘制倒影图
 
+			if (reflectionImage != null) {
+				reflectionImage.recycle();
+			}
+			
 			paint = new Paint();
 			LinearGradient shader = new LinearGradient(0,
 					miniBitmap.getHeight(), 0, bitmapWithReflection.getHeight()
@@ -104,6 +116,15 @@ public class ImageAdapter extends BaseAdapter {
 					(int) (mheight * 3 / 2.0 + reflectionGap)));
 			imageView.setScaleType(ScaleType.MATRIX);
 			mImages[index++] = imageView;
+			
+			if (miniBitmap != null) {
+				miniBitmap.recycle();
+			}
+//			
+//			if (bitmapWithReflection != null) {
+//				bitmapWithReflection.recycle();
+//			}
+			
 		}
 		return true;
 	}

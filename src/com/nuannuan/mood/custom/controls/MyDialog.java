@@ -3,13 +3,11 @@ package com.nuannuan.mood.custom.controls;
 import android.app.Dialog;
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 /**
  * 自定义的dialog
@@ -36,7 +34,7 @@ public class MyDialog extends Dialog {
 		System.out.println("heigth2 : " + dm2.heightPixels);
 		System.out.println("width2 : " + dm2.widthPixels);
 		width = dm2.widthPixels / 10 * 9;
-		heigth = dm2.heightPixels / 2;
+		heigth = dm2.heightPixels / 3*2;
 	}
 
 	public void setDialog(int layoutResID) {
@@ -46,7 +44,6 @@ public class MyDialog extends Dialog {
 		imageView = (ImageView) findViewById(R.id.dialog_image);
 		window = getWindow();
 		window.setWindowAnimations(R.style.dialogWindowAnim);
-
 		window.setLayout(width, heigth);
 		setCanceledOnTouchOutside(true);
 	}

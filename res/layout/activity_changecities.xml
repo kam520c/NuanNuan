@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/weather_bg"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/manage_title"
+        layout="@layout/included_addmood_title"
+         />
+    
+    <com.nuannuan.weather.custom.controls.DragGridView
+    android:id="@+id/draggridview"  
+    android:layout_width="fill_parent"    
+    android:layout_height="fill_parent"  
+    android:numColumns="3"  
+    android:layout_margin="30dip"
+    android:verticalSpacing="10dp"  
+    android:horizontalSpacing="10dp"  
+    android:stretchMode="columnWidth"  
+    android:gravity="center"  
+    />  
+    </LinearLayout>

@@ -13,7 +13,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 
-import com.nuannuan.weather.utilitys.WeatherParser;
+import com.nuannuan.weather.utility.WeatherParser;
 
 /**
  * 新浪天气帮助类.这里会通过访问新浪网来获得天气情况

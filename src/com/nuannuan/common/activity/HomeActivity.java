@@ -1,24 +1,19 @@
 package com.nuannuan.common.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nuannuan.common.R;
 import com.nuannuan.common.fragment.AllMonthFragment;
 import com.nuannuan.common.fragment.StarFragment;
 import com.nuannuan.common.fragment.WeatherFragment;
-import com.scau.feelingmusic.R;
 
 public class HomeActivity extends FragmentActivity implements OnClickListener {
 
@@ -115,21 +110,21 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 		case 0:
 			// 当点击了动态tab时，改变控件的图片和文字颜色
 			newsImage.setImageResource(R.drawable.news_selected);
-			newsText.setTextColor(Color.WHITE);
+			newsText.setTextColor(getResources().getColor(R.color.white));
 			contactsFragment = new WeatherFragment();
 			transaction.replace(R.id.content, contactsFragment);
 			break;
 		case 1:
 			// 当点击了联系人tab时，改变控件的图片和文字颜色
 			contactsImage.setImageResource(R.drawable.contacts_selected);
-			contactsText.setTextColor(Color.WHITE);
+			contactsText.setTextColor(getResources().getColor(R.color.white));
 			newsFragment = new AllMonthFragment();
 			transaction.replace(R.id.content, newsFragment);
 			break;
 		case 2:
 			// 当点击了设置tab时，改变控件的图片和文字颜色
 			settingImage.setImageResource(R.drawable.setting_selected);
-			settingText.setTextColor(Color.WHITE);
+			settingText.setTextColor(getResources().getColor(R.color.white));
 			// if (settingFragment == null) {
 			// 如果SettingFragment为空，则创建一个并添加到界面上
 			settingFragment = new StarFragment();
@@ -138,7 +133,7 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 		default:
 			break;
 		}
-		transaction.commit();
+		transaction.commitAllowingStateLoss();
 	}
 
 	/**
@@ -147,11 +142,11 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 	private void clearSelection() {
 
 		contactsImage.setImageResource(R.drawable.contacts_unselected);
-		contactsText.setTextColor(Color.parseColor("#82858b"));
+		contactsText.setTextColor(getResources().getColor(R.color.purple));
 		newsImage.setImageResource(R.drawable.news_unselected);
-		newsText.setTextColor(Color.parseColor("#82858b"));
+		newsText.setTextColor(getResources().getColor(R.color.purple));
 		settingImage.setImageResource(R.drawable.setting_unselected);
-		settingText.setTextColor(Color.parseColor("#82858b"));
+		settingText.setTextColor(getResources().getColor(R.color.purple));
 	}
 
 	@Override
@@ -169,7 +164,7 @@ public class HomeActivity extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		Intent mIntent = getIntent();
-		int tab = mIntent.getIntExtra("tab",0);
+		int tab = mIntent.getIntExtra("tab", 0);
 		setTabSelection(tab);
 		super.onResume();
 		// mMapView.unpause();

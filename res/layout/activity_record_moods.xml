@@ -33,9 +33,10 @@
 
             <ImageView
                 android:id="@+id/moods_pen_btn"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="45dip"
+                android:layout_marginLeft="-8dip"
                 android:layout_toRightOf="@id/mood_img_bg"
                 android:background="@drawable/btn_pen" />
 
@@ -54,7 +55,7 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-"
+
             </LinearLayout>
         </RelativeLayout>
 

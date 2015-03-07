@@ -8,30 +8,8 @@
         <item>White</item>
         <item>Black</item>
     </string-array>
-    <string-array name="list_menu">
-        <item>用户中心</item>
-        <item>地图展现</item>
-        <item>查看投诉</item>
-        <item>现场投诉</item>
-        <item>投诉管理</item>
-        <item>天气预报</item>
-        <item>升级检查</item>
-        <item>退出程序</item>
-    </string-array>
-    <string-array name="list_reasion">
-        <item>该位置是积水点了</item>
-        <item>该位置井盖不见了</item>
-        <item>该位置的水管爆裂了</item>
-        <item>该位置的道路塌陷了</item>
-        <item>其他原因</item>
-    </string-array>
-     <string-array name="list_state">
-        <item>未执行</item>
-        <item>执行中</item>
-        <item>已完成</item>
-    </string-array>
-    
-         <declare-styleable name="JazzyViewPager">
+
+    <declare-styleable name="JazzyViewPager">
         <attr name="style">
             <enum name="standard" value="0" />
             <enum name="tablet" value="1" />
@@ -50,5 +28,185 @@
         <attr name="outlineEnabled" format="boolean" />
         <attr name="outlineColor" format="color|reference" />
     </declare-styleable>
+
+    <string-array name="gif_name">
+        <item>幸福</item>
+        <item>生气</item>
+        <item>泪奔</item>
+        <item>耶</item>
+        <item>晕</item>
+        <item>喜欢</item>
+        <item>砍人</item>
+        <item>崇拜</item>
+        <item>无语</item>
+        <item>开心</item>
+        <item>乖乖</item>
+        <item>尴尬</item>
+        <item>发呆</item>
+        <item>大哭</item>
+        <item>鄙视</item>
+        <item>鄙视</item>
+    </string-array>
+
+    <attr name="weather">
+
+        <!-- 直辖市 -->
+        <enum name="北京" value="101010100" />
+        <enum name="上海" value="101020100" />
+        <enum name="天津" value="101030100" />
+        <enum name="重庆" value="101040100" />
+        <!-- 特别行政区 -->
+        <enum name="香港" value="101320101" />
+        <enum name="澳门" value="101330101" />
+        <!-- 黑龙江 -->
+        <enum name="哈尔滨" value="101050101" />
+        <enum name="齐齐哈尔" value="101050201" />
+        <enum name="牡丹江" value="101050301" />
+        <enum name="大庆" value="101050901" />
+        <enum name="伊春" value="101050801" />
+        <enum name="双鸭山" value="101051301" />
+        <enum name="鹤岗" value="101051201" />
+        <enum name="鸡西" value="101051101" />
+        <enum name="佳木斯" value="101050401" />
+        <enum name="七台河" value="101051002" />
+        <enum name="黑河" value="101050601" />
+        <enum name="绥化" value="101050501" />
+        <enum name="大兴安岭" value="101050701" />
+        <!-- 吉林 -->
+        <enum name="长春" value="101060101" />
+        <enum name="延吉" value="101060301" />
+        <enum name="吉林" value="101060201" />
+        <enum name="白山" value="101060901" />
+        <enum name="白城" value="101060601" />
+        <enum name="四平" value="101060401" />
+        <enum name="松原" value="101060801" />
+        <enum name="辽源" value="101060701" />
+        <enum name="大安" value="101060603" />
+        <enum name="通化" value="101060501" />
+        <!-- 辽宁 -->
+        <enum name="沈阳" value="101070101" />
+        <enum name="大连" value="101070201" />
+        <enum name="葫芦岛" value="101071401" />
+        <enum name="盘锦" value="101071301" />
+        <enum name="本溪" value="101070501" />
+        <enum name="抚顺" value="101070401" />
+        <enum name="铁岭" value="101071101" />
+        <enum name="辽阳" value="101071001" />
+        <enum name="营口" value="101070801" />
+        <enum name="阜新" value="101070901" />
+        <enum name="朝阳" value="101071201" />
+        <enum name="锦州" value="101070701" />
+        <enum name="丹东" value="101070601" />
+        <enum name="鞍山" value="101070301" />
+        <!-- 内蒙古 -->
+        <enum name="呼和浩特" value="101080101" />
+        <enum name="呼伦贝尔" value="101081000" />
+        <enum name="锡林浩特" value="101080901" />
+        <enum name="包头" value="101080201" />
+        <enum name="赤峰" value="101080601" />
+        <enum name="海拉尔" value="101081001" />
+        <enum name="乌海" value="101080301" />
+        <enum name="鄂尔多斯" value="101080701" />
+        <enum name="通辽" value="101080501" />
+        <!-- 河北 -->
+        <enum name="石家庄" value="101090101" />
+        <enum name="唐山" value="101090501" />
+        <enum name="张家口" value="101090301" />
+        <enum name="廊坊" value="101090601" />
+        <enum name="邢台" value="101090901" />
+        <enum name="邯郸" value="101091001" />
+        <enum name="沧州" value="101090701" />
+        <enum name="衡水" value="101090801" />
+        <enum name="承德" value="101090402" />
+        <enum name="保定" value="101090201" />
+        <enum name="秦皇岛" value="101091101" />
+        <!-- 河南 -->
+        <enum name="郑州" value="101180101" />
+        <enum name="开封" value="101180801" />
+        <enum name="洛阳" value="101180901" />
+        <enum name="平顶山" value="101180501" />
+        <enum name="焦作" value="101181101" />
+        <enum name="鹤壁" value="101181201" />
+        <enum name="新乡" value="101180301" />
+        <enum name="安阳" value="101180201" />
+        <enum name="濮阳" value="101181301" />
+        <enum name="许昌" value="101180401" />
+        <enum name="漯河" value="101181501" />
+        <enum name="三门峡" value="101181701" />
+        <enum name="南阳" value="101180701" />
+        <enum name="商丘" value="101181001" />
+        <enum name="信阳" value="101180601" />
+        <enum name="周口" value="101181401" />
+        <enum name="驻马店" value="101181601" />
+        <!-- 山东 -->
+        <enum name="济南" value="101120101" />
+        <enum name="青岛" value="101120201" />
+        <enum name="淄博" value="101120301" />
+        <enum name="威海" value="101121301" />
+        <enum name="曲阜" value="101120710" />
+        <enum name="临沂" value="101120901" />
+        <enum name="烟台" value="101120501" />
+        <enum name="枣庄" value="101121401" />
+        <enum name="聊城" value="101121701" />
+        <enum name="济宁" value="101120701" />
+        <enum name="菏泽" value="101121001" />
+        <enum name="泰安" value="101120801" />
+        <enum name="日照" value="101121501" />
+        <enum name="东营" value="101121201" />
+        <enum name="德州" value="101120401" />
+        <enum name="滨州" value="101121101" />
+        <enum name="莱芜" value="101121601" />
+        <enum name="潍坊" value="101120601" />
+        <!-- 山西 -->
+        <enum name="太原" value="101100101" />
+        <enum name="阳泉" value="101100301" />
+        <enum name="晋城" value="101100601" />
+        <enum name="晋中" value="101100401" />
+        <enum name="临汾" value="101100701" />
+        <enum name="运城" value="101100801" />
+        <enum name="长治" value="101100501" />
+        <enum name="朔州" value="101100901" />
+        <enum name="忻州" value="101101001" />
+        <enum name="大同" value="101100201" />
+        <enum name="吕梁" value="101101101" />
+        <!-- 江苏 -->
+        <enum name="南京" value="101190101" />
+        <enum name="苏州" value="101190401" />
+        <enum name="昆山" value="101190404" />
+        <enum name="南通" value="101190501" />
+        <enum name="太仓" value="101190408" />
+        <enum name="吴县" value="101190406" />
+        <enum name="徐州" value="101190801" />
+        <enum name="宜兴" value="101190203" />
+        <enum name="镇江" value="101190301" />
+        <enum name="淮安" value="101190901" />
+        <enum name="常熟" value="101190402" />
+        <enum name="盐城" value="101190701" />
+        <enum name="泰州" value="101191201" />
+        <enum name="无锡" value="101190201" />
+        <enum name="连云港" value="101191001" />
+        <enum name="扬州" value="101190601" />
+        <enum name="常州" value="101191101" />
+        <enum name="宿迁" value="101191301" />
+        <!-- 安徽 -->
+        <enum name="合肥" value="101220101" />
+        <enum name="巢湖" value="101221601" />
+        <enum name="蚌埠" value="101220201" />
+        <enum name="安庆" value="101220601" />
+        <enum name="六安" value="101221501" />
+        <enum name="滁州" value="101221101" />
+        <enum name="马鞍山" value="101220501" />
+        <enum name="阜阳" value="101220801" />
+        <enum name="宣城" value="101221401" />
+        <enum name="铜陵" value="101221301" />
+        <enum name="淮北" value="101221201" />
+        <enum name="芜湖" value="101220301" />
+        <enum name="毫州" value="101220901" />
+        <enum name="宿州" value="101220701" />
+        <enum name="淮南" value="101220401" />
+        <enum name="池州" value="101221701" />
+        <!-- 陕西 -->
+
+    </attr>
 
 </resources>

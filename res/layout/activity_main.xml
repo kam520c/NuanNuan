@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff" >
+    android:background="#ffd3e3"
+    android:orientation="vertical" >
 
     <FrameLayout
         android:id="@+id/content"
@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dip"
         android:background="@drawable/tab_bg" >
 
         <RelativeLayout
@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/news_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/news_unselected" />
 
@@ -41,7 +41,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="天气"
-                    android:textColor="#82858b" />
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -59,8 +61,8 @@
 
                 <ImageView
                     android:id="@+id/contacts_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/contacts_unselected" />
 
@@ -70,7 +72,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="心情"
-                    android:textColor="#82858b" />
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -88,8 +92,8 @@
 
                 <ImageView
                     android:id="@+id/setting_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dip"
+                    android:layout_height="80dip"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/setting_unselected" />
 
@@ -99,7 +103,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="星座"
-                    android:textColor="#82858b" />
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

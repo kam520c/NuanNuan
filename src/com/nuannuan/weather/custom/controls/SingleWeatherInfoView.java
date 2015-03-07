@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nuannuan.weather.utilitys.WeatherCondition;
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
+import com.nuannuan.weather.utility.WeatherCondition;
 
 /**
  * 自定义控件.这个控件是显示未来的天气情况的.这里会显示日期,天气状态和气温.
@@ -132,7 +132,7 @@ public class SingleWeatherInfoView extends LinearLayout{
 			return R.drawable.weather_dust;
 		else if(status.equals("阴") ||
 				status.equals("多云"))
-			 return R.drawable.weather_mostlycloudy;
+			 return R.drawable.weather_sunny_n;
 		else if(status.equals("小雨") || 
 				status.equals("中雨") ||
 				status.equals("大雨") ||

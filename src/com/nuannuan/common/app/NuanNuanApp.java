@@ -1,6 +1,9 @@
 package com.nuannuan.common.app;
 
+import java.util.LinkedHashMap;
+
 import com.baidu.location.*;
+import com.nuannuan.weather.utility.WeatherParser;
 
 import android.app.Application;
 import android.util.Log;
@@ -125,6 +128,15 @@ public class NuanNuanApp extends Application {
 	// ====================================================================================
 	private boolean isLogin;
 	private String otherReasion;
+	private LinkedHashMap<String, WeatherParser> mapCity;
+	
+	public LinkedHashMap<String, WeatherParser> getMapCity() {
+		return mapCity;
+	}
+
+	public void setMapCity(LinkedHashMap<String, WeatherParser> mapCity) {
+		this.mapCity = mapCity;
+	}
 
 	public String getOtherReasion() {
 		return otherReasion;

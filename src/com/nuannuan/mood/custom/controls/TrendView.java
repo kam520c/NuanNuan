@@ -5,15 +5,12 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.DashPathEffect;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.Point;
-import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nuannuan.mood.interfaces.TrendButtonIm;
-import com.scau.feelingmusic.R;
 
 /**
  * 

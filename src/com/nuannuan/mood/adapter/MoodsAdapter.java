@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 public class MoodsAdapter extends BaseAdapter {
 
@@ -17,6 +17,12 @@ public class MoodsAdapter extends BaseAdapter {
 	private Integer[] mImageIds = {
 
 	};
+
+	public void refreshAdapter(boolean isRefresh) {
+		if (isRefresh) {
+			notifyDataSetChanged();
+		}
+	}
 
 	public MoodsAdapter(Context c, Integer[] mImageIds) {
 		mContext = c;

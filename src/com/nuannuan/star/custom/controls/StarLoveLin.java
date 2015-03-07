@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 
 public class StarLoveLin extends LinearLayout {
@@ -50,9 +50,9 @@ public class StarLoveLin extends LinearLayout {
 			json0 = (JSONObject) arr.get(0);
 			text0.setText(json0.get("title").toString() + "");
 			json1 = (JSONObject) arr.get(1);
-			text1.setText(json1.get("title").toString() + "");
+//			text1.setText(json1.get("title").toString() + "");
 			json2 = (JSONObject) arr.get(2);
-			text2.setText(json2.get("title").toString() + "");
+//			text2.setText(json2.get("title").toString() + "");
 
 			text00.setText(json0.get("value").toString());
 			text11.setText(json1.get("value").toString());
@@ -139,8 +139,8 @@ public class StarLoveLin extends LinearLayout {
 
 	private void initView(View view) {
 		text0 = (TextView) view.findViewById(R.id.text0);
-		text1 = (TextView) view.findViewById(R.id.text1);
-		text2 = (TextView) view.findViewById(R.id.text2);
+//		text1 = (TextView) view.findViewById(R.id.text1);
+//		text2 = (TextView) view.findViewById(R.id.text2);
 		text00 = (TextView) view.findViewById(R.id.text00);
 		text11 = (TextView) view.findViewById(R.id.text11);
 		text22 = (TextView) view.findViewById(R.id.text22);
@@ -148,14 +148,14 @@ public class StarLoveLin extends LinearLayout {
 //		day_title = (TextView) view.findViewById(R.id.ctl_day_title);
 //		day_time_title = (TextView) view.findViewById(R.id.ctl_day_time_title);
 
-		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
-				"fonts/snFontP2.TTF");
-		text0.setTypeface(face2);
-		text1.setTypeface(face2);
-		text2.setTypeface(face2);
-		text00.setTypeface(face2);
-		text11.setTypeface(face2);
-		text22.setTypeface(face2);
+//		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
+//				"fonts/snFontP2.TTF");
+//		text0.setTypeface(face2);
+////		text1.setTypeface(face2);
+////		text2.setTypeface(face2);
+//		text00.setTypeface(face2);
+//		text11.setTypeface(face2);
+//		text22.setTypeface(face2);
 
 //		day_title.setTypeface(face2);
 //		day_time_title.setTypeface(face2);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.scau.feelingmusic"
+    package="com.nuannuan.common"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -29,14 +29,16 @@
     </uses-permission>
     <uses-permission android:name="android.permission.VIBRATE" >
     </uses-permission>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
+        android:name="com.nuannuan.common.app.NuanNuanApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nuannuan.common.activity.SplashActivity"
+            android:name="com.nuannuan.common.activity.BlowActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
@@ -46,12 +48,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.nuannuan.common.activity.HomeActivity"
- 
             android:screenOrientation="portrait" />
-         <activity
+        <activity
             android:name="com.nuannuan.star.activity.StarFortuneActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
@@ -61,17 +61,27 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.nuannuan.mood.activity.MoodActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-          <activity
+        <activity
             android:name="com.nuannuan.mood.activity.RecordMoodsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-           <activity
+        <activity
             android:name="com.nuannuan.mood.activity.LineEditActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-         
+       
+        <activity
+            android:name="com.nuannuan.weather.activity.ChangeCitiesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.nuannuan.weather.activity.AddCitiesActivity"
+            android:screenOrientation="portrait" />
+         <activity
+            android:name="com.nuannuan.weather.activity.WeatherTrendActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

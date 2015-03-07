@@ -11,8 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 
-import com.nuannuan.common.utilitys.Util;
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
+import com.nuannuan.common.utility.CommonUtil;
 
 public class OutlineContainer extends FrameLayout implements Animatable {
 
@@ -46,18 +46,18 @@ public class OutlineContainer extends FrameLayout implements Animatable {
 	private void init() {
 		mOutlinePaint = new Paint();
 		mOutlinePaint.setAntiAlias(true);
-		mOutlinePaint.setStrokeWidth(Util.dpToPx(getResources(), 2));
+		mOutlinePaint.setStrokeWidth(CommonUtil.dpToPx(getResources(), 2));
 		mOutlinePaint.setColor(getResources().getColor(R.color.holo_blue));
 		mOutlinePaint.setStyle(Style.STROKE);
 
-		int padding = Util.dpToPx(getResources(), 10);
+		int padding = CommonUtil.dpToPx(getResources(), 10);
 		setPadding(padding, padding, padding, padding);
 	}
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
 		super.dispatchDraw(canvas);
-		int offset = Util.dpToPx(getResources(), 5);
+		int offset = CommonUtil.dpToPx(getResources(), 5);
 		if (mOutlinePaint.getColor() != JazzyViewPager.sOutlineColor) {
 			mOutlinePaint.setColor(JazzyViewPager.sOutlineColor);
 		}

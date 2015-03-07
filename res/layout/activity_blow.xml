@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlowActivity" >
+
+    <com.nuannuan.mood.custom.controls.BlowAnimView
+        android:id="@+id/animView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/wb_wlog_blow_transitions"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/re_weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dip"
+        android:visibility="invisible" >
+
+        <LinearLayout
+            android:id="@+id/blow_lin_Right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/image_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                />
+
+            <TextView
+                android:id="@+id/text_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:text="@string/temperature"
+                 android:textColor="@color/coolpink"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:text="@string/status"
+                 android:textColor="@color/coolpink"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/blow_lin_Right"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="22dp"
+                android:text="@string/city"
+                android:textColor="@color/coolpink"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingTop="1dp"
+                android:text="@string/date"
+                android:textColor="@color/coolpink"
+                android:textSize="18sp" />
+
+           
+
+            <TextView
+                android:id="@+id/text_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/power"
+                style="@style/blow_txt_15" />
+
+            <TextView
+                android:id="@+id/text_zwx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zwx"
+                style="@style/blow_txt_15" />
+
+
+            <TextView
+                android:id="@+id/text_yd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yd"
+                style="@style/blow_txt_15" />
+
+            <TextView
+                android:id="@+id/text_chy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chy"
+               style="@style/blow_txt_15"/>"
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

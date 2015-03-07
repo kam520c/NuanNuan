@@ -268,62 +268,29 @@
                         android:paddingLeft="20dip"
                         android:paddingRight="20dip"
                         android:paddingTop="10dip" />
-                </LinearLayout>
+                </LinearLayout> 
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
-                    android:layout_marginTop="5dip"
-                    android:orientation="horizontal" >
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginBottom="5dip"
-                        android:layout_marginRight="5dip"
-                        android:layout_marginTop="5dip"
-                        android:layout_weight="1"
-                        android:background="@drawable/star_today_bg2"
-                        android:orientation="vertical"
-                        android:paddingLeft="20dip"
-                        android:paddingRight="20dip"
-                        android:paddingTop="10dip" >
-
-                        <TextView
-                            android:id="@+id/text5"
-                            style="@style/all_start_txt"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center" />
+                    android:layout_marginTop="5dip" >
 
                         <TextView
                             android:id="@+id/text55"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/hongxinri"
                             style="@style/all_start_txt" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginBottom="5dip"
-                        android:layout_marginLeft="5dip"
-                        android:layout_marginTop="5dip"
-                        android:layout_weight="1"
-                        android:background="@drawable/star_today_bg2"
-                        android:orientation="vertical"
-                        android:paddingLeft="20dip"
-                        android:paddingRight="20dip"
-                        android:paddingTop="10dip" >
-
-                        <TextView
-                            android:id="@+id/text6"
-                            style="@style/all_start_txt"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center" />
 
                         <TextView
                             android:id="@+id/text66"
+                            android:layout_weight="1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/heimeiri"
                             style="@style/all_start_txt" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

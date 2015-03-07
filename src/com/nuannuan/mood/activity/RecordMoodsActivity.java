@@ -1,6 +1,7 @@
 package com.nuannuan.mood.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.json.JSONException;
@@ -15,31 +16,27 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nuannuan.common.R;
+import com.nuannuan.common.R.anim;
 import com.nuannuan.common.activity.HomeActivity;
 import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.common.custom.controls.JazzyViewPager.TransitionEffect;
-import com.nuannuan.mood.adapter.MoodsAdapter;
 import com.nuannuan.mood.custom.controls.LineEditText;
 import com.nuannuan.mood.custom.controls.MoodLin;
 import com.nuannuan.mood.interfaces.TrendButtonIm;
-import com.nuannuan.mood.utilitys.MoodUtility;
+import com.nuannuan.mood.utility.MoodUtility;
 import com.nuannuan.star.adapter.RecordMoodAdapter;
-import com.scau.feelingmusic.R;
-import com.scau.feelingmusic.R.anim;
 
 public class RecordMoodsActivity extends Activity implements
-		OnPageChangeListener {
+		OnPageChangeListener, OnClickListener {
 
 	private JazzyViewPager mJazzy;
 
@@ -47,7 +44,6 @@ public class RecordMoodsActivity extends Activity implements
 	// private ViewPagerAdapter vpAdapter;
 	private ArrayList<LinearLayout> list = new ArrayList<LinearLayout>();
 	private ImageView[] imageViews = null;
-	private Button mButton;
 
 	private long oldTime;
 	private int day;
@@ -73,8 +69,19 @@ public class RecordMoodsActivity extends Activity implements
 		setContentView(R.layout.activity_record_moods);
 		Intent mIntent = getIntent();
 
-		oldTime = mIntent.getLongExtra("oldtimes", -1);
-		day = mIntent.getIntExtra("day", -1);
+		// oldTime = mIntent.getLongExtra("oldtimes", -1);
+		// 直接获取到最后一次的时间
+		oldTime = MoodUtility.readTime(this);
+		// Log.v("==========oldTime=============", ""+oldTime);
+		// Log.v("==========newOL=============", ""+newOL);
+
+		// Date mDate = new Date();
+		// int days=mDate.getDay();
+
+		Calendar mCalendar = Calendar.getInstance();
+		day = mCalendar.get(Calendar.DAY_OF_MONTH);
+		// Log.v("==========days=============", ""+days);
+		// day = mIntent.getIntExtra("day", -1);
 		mContext = this;
 		initGifList1();
 		addMoodUp1();
@@ -99,32 +106,15 @@ public class RecordMoodsActivity extends Activity implements
 		//
 		gif = (ImageView) findViewById(R.id.mood_img_bg);
 
-		Button mButton = (Button) findViewById(R.id.btn_add);
-		mButton.setOnClickListener(new OnClickListener() {
+		TextView mTextView = (TextView) findViewById(R.id.include_addmood_title);
+		mTextView.setText("心情选择");
 
-			@Override
-			public void onClick(View arg0) {
-				JsonMoodStr = getJsonForMood();
-
-				MoodUtility.WriteJsonMood(mContext, oldTime, day, JsonMoodStr);
-				Intent intent = new Intent(mContext, HomeActivity.class);
-				// Log.v("=======tab=======", ""+tab);
-				intent.putExtra("tab", 1);
-				mContext.startActivity(intent);
-			}
-		});
+		RelativeLayout mButton = (RelativeLayout) findViewById(R.id.btn_add);
+		mButton.setOnClickListener(this);
 		setupJazziness(TransitionEffect.CubeOut);
 		initDots();
-		Button backBtn = (Button) findViewById(R.id.btn_back);
-		backBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
-
+		LinearLayout backBtn = (LinearLayout) findViewById(R.id.btn_back);
+		backBtn.setOnClickListener(this);
 	}
 
 	private String getJsonForMood() {
@@ -210,23 +200,13 @@ public class RecordMoodsActivity extends Activity implements
 
 	private List<String> addMoodText1() {
 		textList = new ArrayList<String>();
-		textList.add("幸福");
-		textList.add("生气");
-		textList.add("泪奔");
-		textList.add("耶");
-		textList.add("晕");
-		textList.add("喜欢");
-		textList.add("砍人");
-		textList.add("崇拜");
+		String[] listData = mContext.getResources().getStringArray(
+				R.array.gif_name);
+		int count = listData.length;
 
-		textList.add("无语");
-		textList.add("开心");
-		textList.add("乖乖");
-		textList.add("尴尬");
-		textList.add("发呆");
-		textList.add("大哭");
-		textList.add("鄙视");
-		textList.add("鄙视");
+		for (int i = 0; i < count; i++) {
+			textList.add(listData[i]);
+		}
 		return textList;
 	}
 
@@ -272,7 +252,6 @@ public class RecordMoodsActivity extends Activity implements
 
 				list.add(layout);
 			}
-
 		}
 
 		RecordMoodAdapter adapter = new RecordMoodAdapter(list, mJazzy);
@@ -349,6 +328,30 @@ public class RecordMoodsActivity extends Activity implements
 				// 设置导航按钮不可见
 				// mButton.setVisibility(View.INVISIBLE);
 			}
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.btn_add:
+			JsonMoodStr = getJsonForMood();
+
+			MoodUtility.WriteJsonMood(mContext, oldTime, day, JsonMoodStr);
+			Intent intent = new Intent(mContext, HomeActivity.class);
+			// Log.v("=======tab=======", ""+tab);
+			intent.putExtra("tab", 1);
+			mContext.startActivity(intent);
+			break;
+		case R.id.all_back:
+			finish();
+			break;
+		case R.id.btn_back:
+			finish();
+			break;
+		default:
+			break;
 		}
 	}
 

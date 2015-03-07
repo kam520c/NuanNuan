@@ -6,15 +6,13 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
-import com.scau.feelingmusic.R.color;
+import com.nuannuan.common.R;
 
 
 public class StarDayLin extends LinearLayout {
@@ -61,7 +59,6 @@ public class StarDayLin extends LinearLayout {
 		View view = inflater.inflate(R.layout.layout_star_day, this);
 //		View viewTitle = inflater.inflate(R.layout.layout_star_fortune_title, this);
 		initView(view);
-//		initViewtitle(viewTitle);
 		JSONObject json0 = new JSONObject();
 		JSONObject json1 = new JSONObject();
 		JSONObject json2 = new JSONObject();
@@ -72,13 +69,6 @@ public class StarDayLin extends LinearLayout {
 		JSONObject json7 = new JSONObject();
 		JSONObject json8 = new JSONObject();
 		JSONObject json9 = new JSONObject();
-
-//		JSONObject json44 = new JSONObject();
-//		JSONObject json55 = new JSONObject();
-//		JSONObject json66 = new JSONObject();
-//		JSONObject json77 = new JSONObject();
-//		JSONObject json88 = new JSONObject();
-//		JSONObject json99 = new JSONObject();
 		
 		JSONObject name = new JSONObject();
 
@@ -115,13 +105,9 @@ public class StarDayLin extends LinearLayout {
 			text99.setText(json9.get("value").toString());
 			
 			name = (JSONObject) arr.get(10);
-//			String starname =name.get("cn").toString()+" "+arr.get(11).toString();
 			String starname =name.get("cn").toString();
 			
 			String date =arr.getString(11).toString();
-//			initViewtitle(viewTitle,starname,date);//初始化头部的时间和星座
-//			day_time_title.setText(starname);
-//			day_title.setText("今日运势");
 			
 			
 			bar0.setRating((Integer)json0.get("rank"));
@@ -136,65 +122,6 @@ public class StarDayLin extends LinearLayout {
 		// textList.add(text0);
 	}
 
-	private void initViewtitle(View viewTitle,String starname,String date) {
-		// TODO Auto-generated method stub
-		TextView text20 = (TextView) viewTitle.findViewById(R.id.title_today);//设置今日运势的标题背景
-		text20.setBackgroundResource(R.drawable.star_title_button);
-		text20.setTextColor(android.graphics.Color.WHITE);
-		TextView text21 = (TextView) viewTitle.findViewById(R.id.star);//设置星座背景图
-		int a = 0;
-		if(starname.equals("白羊座"))
-			a=1;
-		else if(starname.equals("金牛座"))
-			a=2;
-		else if(starname.equals("双子座"))
-			a=3;
-		else if(starname.equals("巨蟹座"))
-			a=4;
-		else if(starname.equals("狮子座"))
-			a=5;
-		else if(starname.equals("处女座"))
-			a=6;
-		else if(starname.equals("天秤座"))
-			a=7;
-		else if(starname.equals("天蝎座"))
-			a=8;
-		else if(starname.equals("射手座"))
-			a=9;
-		else if(starname.equals("魔羯座"))
-			a=10;
-		else if(starname.equals("水瓶座"))
-			a=11;
-		else if(starname.equals("双鱼座"))
-			a=12;
-		switch(a){
-		case 1:text21.setBackgroundResource(R.drawable.star_baiyang);break;
-		case 2:text21.setBackgroundResource(R.drawable.star_jinniu);break;
-		case 3:text21.setBackgroundResource(R.drawable.star_shuangzi);break;
-		case 4:text21.setBackgroundResource(R.drawable.star_juxie);break;
-		case 5:text21.setBackgroundResource(R.drawable.star_shizi);break;
-		case 6:text21.setBackgroundResource(R.drawable.star_chunv);break;
-		case 7:text21.setBackgroundResource(R.drawable.star_tianping);break;
-		case 8:text21.setBackgroundResource(R.drawable.star_tianxie);break;
-		case 9:text21.setBackgroundResource(R.drawable.star_sheshou);break;
-		case 10:text21.setBackgroundResource(R.drawable.star_mojie);break;
-		case 11:text21.setBackgroundResource(R.drawable.star_shuiping);break;
-		case 12:text21.setBackgroundResource(R.drawable.star_shuangyu);break;
-		}
-//		text21.setBackgroundResource(R.drawable.star_title_xingzuo);
-//		text20.setBackgroundColor(color.hotpink);
-//		TextView text21 = (TextView) viewTitle.findViewById(R.id.star);//设置星座背景图
-//		text21.setText(starname);
-		String year = date.substring(0, 4);
-		String month = date.substring(5, 7);
-		String day = date.substring(8, 10);
-		TextView text22 = (TextView) viewTitle.findViewById(R.id.year);
-		TextView text23 = (TextView) viewTitle.findViewById(R.id.month);
-		TextView text24 = (TextView) viewTitle.findViewById(R.id.day);
-		text22.setText(year+"/");
-		text23.setText(month+"/");
-		text24.setText(day);
-	}
 
 	private void initView(View view) {
 		text0 = (TextView) view.findViewById(R.id.text0);
@@ -215,8 +142,6 @@ public class StarDayLin extends LinearLayout {
 		text88 = (TextView) view.findViewById(R.id.text88);
 		text99 = (TextView) view.findViewById(R.id.text99);
 
-//		day_title = (TextView) view.findViewById(R.id.ctl_day_title);
-//		day_time_title = (TextView) view.findViewById(R.id.ctl_day_time_title);
 		
 		bar0 = (RatingBar) view.findViewById(R.id.rtb0);
 		bar1 = (RatingBar) view.findViewById(R.id.rtb1);
@@ -225,27 +150,25 @@ public class StarDayLin extends LinearLayout {
 		
 	
 
-		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
-				"fonts/snFontP2.TTF");
-		text0.setTypeface(face2);
-		text1.setTypeface(face2);
-		text2.setTypeface(face2);
-		text3.setTypeface(face2);
-		text4.setTypeface(face2);
-		text5.setTypeface(face2);
-		text6.setTypeface(face2);
-		text7.setTypeface(face2);
-		text8.setTypeface(face2);
-		text9.setTypeface(face2);
+//		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
+//				"fonts/snFontP2.TTF");
+//		text0.setTypeface(face2);
+//		text1.setTypeface(face2);
+//		text2.setTypeface(face2);
+//		text3.setTypeface(face2);
+//		text4.setTypeface(face2);
+//		text5.setTypeface(face2);
+//		text6.setTypeface(face2);
+//		text7.setTypeface(face2);
+//		text8.setTypeface(face2);
+//		text9.setTypeface(face2);
+//
+//		text44.setTypeface(face2);
+//		text55.setTypeface(face2);
+//		text66.setTypeface(face2);
+//		text77.setTypeface(face2);
+//		text88.setTypeface(face2);
+//		text99.setTypeface(face2);
 
-		text44.setTypeface(face2);
-		text55.setTypeface(face2);
-		text66.setTypeface(face2);
-		text77.setTypeface(face2);
-		text88.setTypeface(face2);
-		text99.setTypeface(face2);
-
-//		day_title.setTypeface(face2);
-//		day_time_title.setTypeface(face2);
 	}
 }

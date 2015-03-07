@@ -9,28 +9,65 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true" >
 
-        <Button
+        <LinearLayout
             android:id="@+id/btn_back"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/all_back" />
+            android:background="@drawable/btn_back"
+            android:orientation="horizontal" >
 
-        <Button
+            <Button
+                android:id="@+id/all_back"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_gravity="center"
+                android:layout_margin="10dip"
+                android:background="@drawable/all_back" />
+
+            <TextView
+                android:layout_width="0.5dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+        </LinearLayout>
+
+        <RelativeLayout
             android:id="@+id/btn_add"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
+            android:layout_width="46dip"
+            android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/btn_save" />
+            android:background="@drawable/btn_back" >
+
+            <TextView
+                android:layout_width="0.5dip"
+                android:layout_height="40dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/btn_refresh_city"
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dip"
+                android:background="@drawable/all_save" />
+        </RelativeLayout>
 
         <TextView
+            android:id="@+id/include_addmood_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:gravity="center" />
-        	
+            android:layout_toLeftOf="@id/btn_add"
+            android:layout_toRightOf="@id/btn_back"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
     </RelativeLayout>
 
 </RelativeLayout>

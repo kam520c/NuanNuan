@@ -87,20 +87,13 @@
                 android:layout_margin="3dip"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/text1"
-                    style="@style/all_start_txt"
-                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/text11"
                     style="@style/all_start_txt"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/star_today_bg2"
-                    android:paddingLeft="20dip"
-                    android:paddingRight="20dip"
-                    android:paddingTop="10dip" />
+                    android:background="@drawable/star_bg_girl"/>
             </LinearLayout>
 
             <LinearLayout
@@ -110,19 +103,11 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/text2"
-                    style="@style/all_start_txt"
-                    android:layout_height="wrap_content" />
-
-                <TextView
                     android:id="@+id/text22"
                     style="@style/all_start_txt"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/star_today_bg2"
-                    android:paddingLeft="20dip"
-                    android:paddingRight="20dip"
-                    android:paddingTop="10dip" />
+                    android:background="@drawable/star_bg_boy" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

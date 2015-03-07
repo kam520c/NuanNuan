@@ -9,15 +9,22 @@
     <color name="blue">#33CCFF</color>
     <color name="silver">#CCCCCC</color>
     <!-- 设置首页边框描边颜色 -->
-    <color name="setting_stroke">#000000</color>
+    <color name="setting_stroke">#A9A9A9</color>
     <!-- 全局页面背景颜色——白色 -->
     <color name="sys_background">#ffffff</color>
-	<color name="holo_blue">#FF33E5B5</color>
-	 <!-- 星座颜色-->
-	  <color name="all_text_red">#FF3366</color>
-     <color name="purple">#993366</color>
-     <color name="hotpink">#FF69B4</color>
-     <color name="lavender">#E6E6FA</color>
-     <color name="coolpink">#FF6699</color>
-    
+    <color name="holo_blue">#FF33E5B5</color>
+    <!-- 星座颜色 -->
+    <color name="all_text_red">#FF3366</color>
+    <color name="purple">#993366</color>
+    <color name="hotpink">#FF69B4</color>
+    <color name="lavender">#E6E6FA</color>
+    <color name="coolpink">#993399</color>
+    <color name="trend_txt_pink">#fe619f</color>
+    <color name="trend_line_yellow">#f9a92c</color>
+    <color name="trend_line_blue">#00b7ee</color>
+    <color name="trend_txt_gray">#8b8b8b</color>
+    <color name="titile_bg_normal">#FF3366</color>
+     <color name="titile_bg_click">#fd6399</color> 
+    <color name="weather_txt">#FF9900</color>
+
 </resources>

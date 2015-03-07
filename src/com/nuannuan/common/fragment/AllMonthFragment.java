@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.json.JSONArray;
-
-import android.app.Fragment;
 import android.content.Intent;
-import android.location.GpsStatus.Listener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +14,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.nuannuan.common.R;
 import com.nuannuan.common.activity.HomeActivity;
 import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.mood.activity.MoodActivity;
 import com.nuannuan.mood.adapter.AllMonthAdapter;
 import com.nuannuan.mood.custom.controls.LinTrendView;
-import com.nuannuan.mood.utilitys.MoodUtility;
+import com.nuannuan.mood.utility.MoodUtility;
 import com.nuannuan.weather.custom.controls.GalleryView;
-import com.scau.feelingmusic.R;
 
 public class AllMonthFragment extends android.support.v4.app.Fragment {
 
@@ -42,6 +37,7 @@ public class AllMonthFragment extends android.support.v4.app.Fragment {
 	private AllMonthAdapter adapter;
 	private List<String> StrList = new ArrayList<String>();
 	private List<Long> loogList = new ArrayList<Long>();
+	private List<Integer> intList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,11 +55,10 @@ public class AllMonthFragment extends android.support.v4.app.Fragment {
 
 		int screenHeight = home.getWindowManager().getDefaultDisplay()
 				.getHeight();
-	
 
 		loogList = MoodUtility.readTimes(home);
 
-		List<Integer> intList = new ArrayList<Integer>();
+		intList = new ArrayList<Integer>();
 		if (loogList.size() > 0) {
 			for (long dates : loogList) {
 				Date mDate = new Date(dates);
@@ -71,7 +66,7 @@ public class AllMonthFragment extends android.support.v4.app.Fragment {
 				intList.add(Month);
 			}
 		}
-		
+
 		StrList = MoodUtility.readAllJson(home);
 
 		adapter = new AllMonthAdapter(home, screenHeight, intList);
@@ -82,7 +77,9 @@ public class AllMonthFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				tvTitle.setText(adapter.titles[position]);
+				if(intList.size()>position){
+					tvTitle.setText(intList.get(position)+1+"月");
+				}
 			}
 
 			@Override
@@ -95,20 +92,25 @@ public class AllMonthFragment extends android.support.v4.app.Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent mIntent = new Intent(home, MoodActivity.class);
-				String json=null;
-				long time=-1;
-				try{
-					 json=StrList.get(position);
-					 time=loogList.get(position);
-				}catch(Exception e){
-					
+				String json = null;
+				long time = -1;
+				try {
+					json = StrList.get(position);
+					time = loogList.get(position);
+				} catch (Exception e) {
+
 				}
-				
 				mIntent.putExtra("json", json);
 				mIntent.putExtra("time", time);
 				startActivity(mIntent);
 			}
 		});
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 
 }

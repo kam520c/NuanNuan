@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 public class StarWeekLin extends LinearLayout {
 
@@ -104,9 +104,9 @@ public class StarWeekLin extends LinearLayout {
 			json4 = (JSONObject) arr.get(4);
 			text4.setText(json4.get("title").toString() + "");
 			json5 = (JSONObject) arr.get(5);
-			text5.setText(json5.get("title").toString() + "");
+//			text5.setText(json5.get("title").toString() + "");
 			json6 = (JSONObject) arr.get(6);
-			text6.setText(json6.get("title").toString() + "");
+//			text6.setText(json6.get("title").toString() + "");
 			json7 = (JSONObject) arr.get(7);
 			text7.setText(json7.get("title").toString() + ":");
 			// json8 = (JSONObject) arr.get(8);
@@ -212,8 +212,8 @@ public class StarWeekLin extends LinearLayout {
 		text2 = (TextView) view.findViewById(R.id.text2);
 		text3 = (TextView) view.findViewById(R.id.text3);
 		text4 = (TextView) view.findViewById(R.id.text4);
-		text5 = (TextView) view.findViewById(R.id.text5);
-		text6 = (TextView) view.findViewById(R.id.text6);
+//		text5 = (TextView) view.findViewById(R.id.text5);
+//		text6 = (TextView) view.findViewById(R.id.text6);
 		text7 = (TextView) view.findViewById(R.id.text7);
 
 		text00 = (TextView) view.findViewById(R.id.text00);
@@ -241,30 +241,30 @@ public class StarWeekLin extends LinearLayout {
 
 		text1_title = (TextView) view.findViewById(R.id.text1_title);
 
-		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
-				"fonts/snFontP2.TTF");
-		text0.setTypeface(face2);
-		text1.setTypeface(face2);
-
-		text2.setTypeface(face2);
-		text3.setTypeface(face2);
-		text4.setTypeface(face2);
-		text5.setTypeface(face2);
-		text6.setTypeface(face2);
-		text7.setTypeface(face2);
-
-		text00.setTypeface(face2);
-		text22.setTypeface(face2);
-		text33.setTypeface(face2);
-		text44.setTypeface(face2);
-		text55.setTypeface(face2);
-		text66.setTypeface(face2);
-		text77.setTypeface(face2);
-
-		text11.setTypeface(face2);
-		text_1.setTypeface(face2);
-		text_11.setTypeface(face2);
-		text1_title.setTypeface(face2);
+//		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
+//				"fonts/snFontP2.TTF");
+//		text0.setTypeface(face2);
+//		text1.setTypeface(face2);
+//
+//		text2.setTypeface(face2);
+//		text3.setTypeface(face2);
+//		text4.setTypeface(face2);
+////		text5.setTypeface(face2);
+////		text6.setTypeface(face2);
+//		text7.setTypeface(face2);
+//
+//		text00.setTypeface(face2);
+//		text22.setTypeface(face2);
+//		text33.setTypeface(face2);
+//		text44.setTypeface(face2);
+//		text55.setTypeface(face2);
+//		text66.setTypeface(face2);
+//		text77.setTypeface(face2);
+//
+//		text11.setTypeface(face2);
+//		text_1.setTypeface(face2);
+//		text_11.setTypeface(face2);
+//		text1_title.setTypeface(face2);
 
 		// day_title.setTypeface(face2);
 		// day_time_title.setTypeface(face2);

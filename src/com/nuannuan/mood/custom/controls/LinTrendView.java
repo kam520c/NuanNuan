@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.nuannuan.common.R;
 import com.nuannuan.mood.interfaces.TrendButtonIm;
 import com.nuannuan.star.constants.MoodConstants;
-import com.scau.feelingmusic.R;
 
 public class LinTrendView extends LinearLayout{
 

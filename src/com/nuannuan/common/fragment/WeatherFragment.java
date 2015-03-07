@@ -1,7 +1,10 @@
 package com.nuannuan.common.fragment;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,8 +12,8 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,23 +21,28 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.nuannuan.common.R;
+import com.nuannuan.common.R.anim;
 import com.nuannuan.common.activity.HomeActivity;
+import com.nuannuan.common.app.NuanNuanApp;
 import com.nuannuan.common.custom.controls.InhaleView;
 import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.common.custom.controls.JazzyViewPager.TransitionEffect;
-import com.nuannuan.common.utilitys.Rotate3dAnimation;
+import com.nuannuan.common.utility.MoodTimeCount;
+import com.nuannuan.common.utility.Rotate3dAnimation;
+import com.nuannuan.common.utility.RotationTimeCount;
 import com.nuannuan.mood.activity.LineEditActivity;
-import com.nuannuan.mood.activity.RecordMoodsActivity;
-import com.nuannuan.weather.activity.AddCityActivity;
+import com.nuannuan.weather.activity.ChangeCitiesActivity;
 import com.nuannuan.weather.adapter.WeatherAdapter;
+import com.nuannuan.weather.interfaces.WeatherConditionIm;
 import com.nuannuan.weather.interfaces.WeatherIm;
-import com.scau.feelingmusic.R;
-import com.scau.feelingmusic.R.anim;
+import com.nuannuan.weather.utility.WeatherParser;
+import com.nuannuan.weather.utility.WeatherUtility;
 
 public class WeatherFragment extends android.support.v4.app.Fragment implements
 		OnPageChangeListener, View.OnClickListener {
@@ -53,8 +61,18 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 	private LinearLayout mImageView2 = null;
 	private LinearLayout mStartAnimView = null;
 	private String weather = null;
-	private boolean isAddNum=false;
-	private boolean isClick=false;
+	private boolean isAddNum = false;
+	private boolean isClick = false;// 传入给信纸的那个界面
+	private ViewGroup group;
+	private WeatherAdapter adapter;
+	private WeatherUtility weatherUtility;
+	private NuanNuanApp mNuanApp;
+	private ImageView mBar;
+	private RotationTimeCount time;
+	private MoodTimeCount moodTime;
+	private final static int INITGIF=3;
+
+	// private LinkedHashMap<String, WeatherParser> map;
 
 	public WeatherFragment(ArrayList<InhaleView> listInhale) {
 		listInhale = listLin;
@@ -67,7 +85,7 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
-		isClick=false;
+		isClick = false;
 		super.onPause();
 	}
 
@@ -76,55 +94,106 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 			Bundle savedInstanceState) {
 		View weatherLayout = inflater.inflate(R.layout.fragment_weather,
 				container, false);
+
 		home = (HomeActivity) getActivity();
+		mNuanApp = (NuanNuanApp) home.getApplication();
+
 		initGifList();
 
 		initView(weatherLayout);
-		setupJazziness(TransitionEffect.Standard);
-		initDots(weatherLayout);
-
+		updateWeather();
+		initDots();
 		return weatherLayout;
 	}
 
+	/**
+	 * 初始化控件
+	 * 
+	 * @param view
+	 */
 	private void initView(View view) {
 		mJazzy = (JazzyViewPager) view.findViewById(R.id.jazzy_pager);
+		mJazzy.setTransitionEffect(TransitionEffect.Standard);
 		deleteBtn = (Button) view.findViewById(R.id.deleteBtn);
+		group = (ViewGroup) view.findViewById(R.id.guide_bg);
+
 		deleteBtn.setOnClickListener(this);
 		Button AddBtn = (Button) view.findViewById(R.id.addBtn);
 		AddBtn.setOnClickListener(this);
 		mImageView1 = (LinearLayout) view.findViewById(R.id.home_gif);
 		mImageView1.setOnClickListener(this);
-		initAnim(gifList.get(10));
+		initAnim(gifList.get(INITGIF));
 		mImageView2 = (LinearLayout) view.findViewById(R.id.home_gif2);
 		mContainer = view.findViewById(R.id.container);
 		mStartAnimView = mImageView1;
 		ImageView pen = (ImageView) view.findViewById(R.id.pen_btn);
 		pen.setOnClickListener(this);
 
+		LinearLayout linearLayout = (LinearLayout) view
+				.findViewById(R.id.refresh_lin);
+		linearLayout.setOnClickListener(this);
+
+		mBar = (ImageView) view.findViewById(R.id.refresh_btn);
+
+		time = new RotationTimeCount(1000000, 800);
+		time.start();
+		moodTime = new MoodTimeCount(2500, 2500, home);
 	}
 
-	private void setupJazziness(TransitionEffect effect) {
-		mJazzy.setTransitionEffect(effect);
+	private LinkedHashMap<String, WeatherParser> linkMap = new LinkedHashMap<String, WeatherParser>();
 
+	private WeatherUtility utilityWeather = null;
+	private boolean isRefreshWeather = false;// 是否可以刷新天气信息
+
+	/**
+	 * 更新主页的天气信息
+	 * 
+	 * @param effect
+	 */
+	private void updateWeather() {
+
+		LinkedHashMap<String, WeatherParser> map = mNuanApp.getMapCity();
+		if (map == null || isRefreshWeather) {
+			utilityWeather = new WeatherUtility(home, new WeatherConditionIm() {
+				@Override
+				public void Succeed(LinkedHashMap<String, WeatherParser> map) {
+					initInhale(map);
+					mNuanApp.setMapCity(map);
+					isRefreshWeather = false;
+				}
+
+				@Override
+				public void Failed() {
+					// TODO Auto-generated method stub
+					Toast.makeText(home, "获取天气失败,请重试", Toast.LENGTH_SHORT)
+							.show();
+					isRefreshWeather = false;
+				}
+			}, mBar);
+		} else {
+			initInhale(map);
+		}
+	}
+
+	private void initInhale(LinkedHashMap<String, WeatherParser> linkMap) {
 		int screenWidth = home.getWindowManager().getDefaultDisplay()
 				.getWidth();
 		int screenHeigth = home.getWindowManager().getDefaultDisplay()
 				.getHeight();
-		InhaleView mInhaleView1 = new InhaleView(home, 1, screenWidth,
-				screenHeigth);
-		InhaleView mInhaleView2 = new InhaleView(home, 2, screenWidth,
-				screenHeigth);
-		InhaleView mInhaleView3 = new InhaleView(home, 3, screenWidth,
-				screenHeigth);
-		InhaleView mInhaleView4 = new InhaleView(home, 4, screenWidth,
-				screenHeigth);
 
-		listLin.add(mInhaleView1);
-		listLin.add(mInhaleView2);
-		listLin.add(mInhaleView3);
-		listLin.add(mInhaleView4);
+		LinkedList<String> cityList = new LinkedList<String>();
+		Set<String> key = linkMap.keySet();
+		for (String city : key) {
+			cityList.add(city);
+		}
 
-		WeatherAdapter adapter = new WeatherAdapter(listLin, mJazzy);
+		for (int i = 0; i < linkMap.size(); i++) {
+			InhaleView mInhaleView1 = new InhaleView(home, linkMap.get(cityList
+					.get(i)), screenWidth, screenHeigth);
+			listLin.add(mInhaleView1);
+
+		}
+		adapter = new WeatherAdapter(home, listLin, mJazzy);
 		mJazzy.setAdapter(adapter);
 		mJazzy.setPageMargin(30);
 		mJazzy.setOnPageChangeListener(this);
@@ -156,20 +225,24 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 		AnimationDrawable ad = (AnimationDrawable) mImageView1.getBackground();
 		ad.start();
 	}
-	
+
+	/**
+	 * 心情图片存入json
+	 * @return
+	 */
 	private String getJsonForMood() {
 		String mood = "";
 
 		JSONObject json = new JSONObject();
 		try {
-			if(num==0){
-				if(isClick){
+			if (num == 0) {
+				if (isClick) {
 					json.put("gif", num);
-				}else{
-					json.put("gif", 10);
+				} else {
+					json.put("gif", INITGIF);
 				}
-			}else{
-				json.put("gif", num-1);
+			} else {
+				json.put("gif", num - 1);
 			}
 			json.put("mood", mood);
 			json.put("weather", "weather");
@@ -182,28 +255,24 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 	}
 
 	/**
-	 * ��ʼ���ײ�
+	 * 初始化点的个数
 	 */
-	private void initDots(View view) {
-
-		ViewGroup group = (ViewGroup) view.findViewById(R.id.guide_bg);
+	private void initDots() {
 
 		imageViews = new ImageView[listLin.size()];
-
+		group.removeAllViews();
 		for (int i = 0; i < listLin.size(); i++) {
 			ImageView imageView = new ImageView(home);
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(20, 20);
 			lp.setMargins(20, 0, 20, 0);
 			imageView.setLayoutParams(lp);
 
 			imageViews[i] = imageView;
 			if (i == 0) {
 				// Ĭ��ѡ�е�һ��ͼƬ
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_blue);
+				imageViews[i].setBackgroundResource(R.drawable.mood_click);
 			} else {
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
+				imageViews[i].setBackgroundResource(R.drawable.mood_unclick);
 			}
 			group.addView(imageViews[i]);
 		}
@@ -224,10 +293,11 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 	@Override
 	public void onPageSelected(int arg0) {
 		witch = arg0;
+		// initDots();
 		for (int i = 0; i < imageViews.length; i++) {
-			imageViews[arg0].setBackgroundResource(R.drawable.splash_doc_blue);
+			imageViews[arg0].setBackgroundResource(R.drawable.mood_click);
 			if (arg0 != i) {
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
+				imageViews[i].setBackgroundResource(R.drawable.mood_unclick);
 			}
 
 		}
@@ -239,7 +309,7 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 		switch (v.getId()) {
 		case R.id.deleteBtn:
 
-			if (listLin.size() <= 1) {
+			if (listLin.size() <= 1 || witch == listLin.size()) {
 				Toast.makeText(home, "最后一个城市不能删除", Toast.LENGTH_LONG).show();
 			} else {
 				InhaleView inhaView = (InhaleView) listLin.get(witch);
@@ -251,63 +321,87 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 					public void WeatherImClick() {
 						// TODO Auto-generated method stub
 						listLin.remove(witch);
-						WeatherAdapter adapter = new WeatherAdapter(listLin,
-								mJazzy);
+						adapter.setData(listLin);
+						adapter.refreshAdapter(true);
 						mJazzy.setAdapter(adapter);
 						mJazzy.setPageMargin(30);
 						mJazzy.clearAnimation();
-
-						WeatherFragment fragment = new WeatherFragment(listLin);
-
-						android.support.v4.app.FragmentTransaction transaction = home
-								.getSupportFragmentManager().beginTransaction();
-						transaction.replace(R.id.content, fragment);
-
+						initDots();
 					}
 				});
 			}
 
 			break;
 		case R.id.addBtn:
+
 			Intent mIntent = new Intent();
-			mIntent.setClass(home, AddCityActivity.class);
+			mIntent.setClass(home, ChangeCitiesActivity.class);
 			startActivity(mIntent);
+			// WeatherUtility.saveCity("北京", home);
 			break;
 		case R.id.home_gif:
-			isClick=true;
-			if (num < gifList.size()) {
-				if (num % 2 == 1) {
-					mImageView1.setBackgroundResource(gifList.get(num));
-				} else {
-					mImageView2.setBackgroundResource(gifList.get(num));
+
+			if (time.isGifClick) {
+				isClick = true;
+				if (num < gifList.size()) {
+					if (num % 2 == 1) {
+						mImageView1.setBackgroundResource(gifList.get(num));
+					} else {
+						mImageView2.setBackgroundResource(gifList.get(num));
+					}
+
+					mCenterX = mContainer.getWidth() / 2;
+					mCenterY = mContainer.getHeight() / 2;
+					getDepthZ();
+					applyRotation(mStartAnimView, 0, 90);
+					if (num == gifList.size() - 1) {
+						num = 0;
+						isAddNum = true;
+					}
+					if (isAddNum) {
+						isAddNum = false;
+					} else {
+						num = num + 1;
+					}
+					time.isGifClick = false;
 				}
-				mCenterX = mContainer.getWidth() / 2;
-				mCenterY = mContainer.getHeight() / 2;
-				getDepthZ();
-				applyRotation(mStartAnimView, 0, 90);
-				if (num == gifList.size() - 1) {
-					num = 0;
-					isAddNum=true;
-				}
-				if(isAddNum){
-					isAddNum=false;
-				}else{
-					num = num + 1;
-				}
+
+			}
+			moodTime.setMood(getJsonForMood());
+			moodTime.setNum(num);
+			if (moodTime.isSaveGif) {
+				moodTime.isSaveGif = false;
+				moodTime.start();
 			}
 			break;
 		case R.id.pen_btn:
 			Intent intent = new Intent(home, LineEditActivity.class);
 			intent.putExtra("mood", getJsonForMood());
 			startActivity(intent);
+			// home.finish();
+			break;
+		case R.id.refresh_lin:
+			isRefreshWeather = true;
+			updateWeather();
 			break;
 		default:
 			break;
+
 		}
 	}
 
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		for (InhaleView view : listLin) {
+			view.mBitmap.recycle();
+		}
+		// onDestroy();
+		super.onDestroyView();
+	}
+
 	View mContainer = null;
-	int mDuration = 300;
+	int mDuration = 200;
 	float mCenterX = 0.0f;
 	float mCenterY = 0.0f;
 	float mDepthZ = 0.0f;
@@ -372,7 +466,7 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 			mStartAnimView.requestFocus();
 
 			Rotate3dAnimation rotation = new Rotate3dAnimation(-90, 0,
-					 mCenterX, mCenterY, mDepthZ, false);
+					mCenterX, mCenterY, mDepthZ, false);
 
 			rotation.setDuration(mDuration);
 			rotation.setFillAfter(true);
@@ -380,5 +474,4 @@ public class WeatherFragment extends android.support.v4.app.Fragment implements
 			mStartAnimView.startAnimation(rotation);
 		}
 	}
-
 }

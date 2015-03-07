@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 public class StarMonthLin extends LinearLayout {
 
@@ -178,19 +178,19 @@ public class StarMonthLin extends LinearLayout {
 		bar1 = (RatingBar) view.findViewById(R.id.rtb1);
 		bar2 = (RatingBar) view.findViewById(R.id.rtb2);
 
-		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
-				"fonts/snFontP2.TTF");
-		text0.setTypeface(face2);
-		text1.setTypeface(face2);
-		text2.setTypeface(face2);
-		text3.setTypeface(face2);
-		text4.setTypeface(face2);
-
-		text00.setTypeface(face2);
-		text11.setTypeface(face2);
-		text22.setTypeface(face2);
-		text33.setTypeface(face2);
-		text44.setTypeface(face2);
+//		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
+//				"fonts/snFontP2.TTF");
+//		text0.setTypeface(face2);
+//		text1.setTypeface(face2);
+//		text2.setTypeface(face2);
+//		text3.setTypeface(face2);
+//		text4.setTypeface(face2);
+//
+//		text00.setTypeface(face2);
+//		text11.setTypeface(face2);
+//		text22.setTypeface(face2);
+//		text33.setTypeface(face2);
+//		text44.setTypeface(face2);
 //
 //		day_title.setTypeface(face2);
 //		day_time_title.setTypeface(face2);

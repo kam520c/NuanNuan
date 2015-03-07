@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nuannuan.common.R;
 import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.common.custom.controls.JazzyViewPager.TransitionEffect;
 import com.nuannuan.star.adapter.StarAdapter;
@@ -28,7 +29,6 @@ import com.nuannuan.star.custom.controls.StarMonthLin;
 import com.nuannuan.star.custom.controls.StarTomorrowLin;
 import com.nuannuan.star.custom.controls.StarWeekLin;
 import com.nuannuan.star.custom.controls.StarYearLin;
-import com.scau.feelingmusic.R;
 
 @SuppressLint("ResourceAsColor")
 public class StarFortuneActivity extends Activity implements
@@ -222,9 +222,9 @@ public class StarFortuneActivity extends Activity implements
 		// TODO Auto-generated method stub
 
 		// TextView text220 = null;
-		 String year;
+		 String year = "";
 		 String month;
-		 String week;
+		String week = "";
 		 String day;
 		 String date = null;
 		// TextView text222;
@@ -276,9 +276,15 @@ public class StarFortuneActivity extends Activity implements
 		case 2:
 
 			 name = (JSONObject) arr.get(8);
-			 date = arr.getString(9).toString();
+		try{
+			date = arr.getString(9).toString();
 			 year = date.substring(2, 12);
 			 week = date.substring(15, 25);
+		}catch (Exception e) {
+				// TODO: handle exception
+		}
+			 
+			 dayTitle.setText("");
 			 yearTitle.setText(year + "/");
 			 weekTitle.setText(week);
 			 weekTxt.setBackgroundResource(R.drawable.star_title_button);
@@ -297,6 +303,7 @@ public class StarFortuneActivity extends Activity implements
 			 date = arr.getString(6).toString();
 			 year = date.substring(2, 12);
 			 week = date.substring(15, 25);
+			 dayTitle.setText("");
 			 yearTitle.setText(year + "/");
 			 weekTitle.setText(week);
 			monthTxt.setBackgroundResource(R.drawable.star_title_button);
@@ -313,6 +320,7 @@ public class StarFortuneActivity extends Activity implements
 			 date = arr.getString(7).toString();
 			 year = date.substring(2, 12);
 			 week = date.substring(15, 25);
+			 dayTitle.setText("");
 			 yearTitle.setText(year + "/");
 			 weekTitle.setText(week);
 			yearTxt.setBackgroundResource(R.drawable.star_title_button);
@@ -328,6 +336,7 @@ public class StarFortuneActivity extends Activity implements
 			date = arr.getString(4).toString();
 			 year = date.substring(2, 12);
 			 week = date.substring(15, 25);
+			 dayTitle.setText("");
 			 yearTitle.setText(year + "/");
 			 weekTitle.setText(week);
 			loveTxt.setBackgroundResource(R.drawable.star_title_button);

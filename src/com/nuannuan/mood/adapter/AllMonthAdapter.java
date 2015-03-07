@@ -1,7 +1,6 @@
 package com.nuannuan.mood.adapter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,46 +17,52 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader.TileMode;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
+import com.nuannuan.common.R;
 import com.nuannuan.weather.custom.controls.GalleryView;
-import com.scau.feelingmusic.R;
 
 public class AllMonthAdapter extends BaseAdapter {
-//	private ImageView[] mImages; // ���浹ӰͼƬ������
+	// private ImageView[] mImages; // ���浹ӰͼƬ������
 
 	private List<ImageView> imageList = new ArrayList<ImageView>();
 	private Context mContext;
 	public List<Map<String, Object>> list;
 	private int height;
 
+	public void refreshAdapter(boolean isRefresh) {
+		if (isRefresh) {
+			notifyDataSetChanged();
+		}
+	}
+
 	public Integer[] imgs = { R.drawable.image01, R.drawable.image02,
 			R.drawable.image03, R.drawable.image04, R.drawable.image05,
 			R.drawable.image01, R.drawable.image02, R.drawable.image03,
 			R.drawable.image04, R.drawable.image05, R.drawable.image01,
 			R.drawable.image02, R.drawable.image03 };
-	public String[] titles = { "01", "02", "03", "04", "05", "06", "07" };
+//	public String[] titles = { "01", "02", "03", "04", "05", "06", "07" };
 	private List<Integer> mlistMonth = new ArrayList<Integer>();
-//	private List<String> mJsonList = new ArrayList<String>();
-//	private List<Long> timeList = new ArrayList<Long>();
+
+	// private List<String> mJsonList = new ArrayList<String>();
+	// private List<Long> timeList = new ArrayList<Long>();
 
 	public AllMonthAdapter(Context c, int ScreenHeight, List<Integer> intList) {
 		this.height = ScreenHeight;
 		this.mContext = c;
 		this.mlistMonth = intList;
-//		this.mJsonList=jsonList;
-//		this.timeList=longList;
-		
+		// this.mJsonList=jsonList;
+		// this.timeList=longList;
+
 		list = new ArrayList<Map<String, Object>>();
 		Date mDate = new Date();
 		int month = mDate.getMonth();
-		String jsonMood=null;
-		
+		String jsonMood = null;
+
 		if (mlistMonth.size() == 0) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("image", imgs[month]);
@@ -65,7 +70,7 @@ public class AllMonthAdapter extends BaseAdapter {
 
 		} else {
 			int lastMonth = -1;
-			for (int moreMonth = 0; moreMonth<mlistMonth.size()  ; moreMonth++) {
+			for (int moreMonth = 0; moreMonth < mlistMonth.size(); moreMonth++) {
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				lastMonth = mlistMonth.get(moreMonth);
 				map.put("image", imgs[lastMonth]);
@@ -77,28 +82,28 @@ public class AllMonthAdapter extends BaseAdapter {
 				list.add(map);
 			}
 		}
-//		mImages = new ImageView[list.size()];
-		long time=-1;
-		for(int j=0;j<list.size();j++){
+		// mImages = new ImageView[list.size()];
+		long time = -1;
+		for (int j = 0; j < list.size(); j++) {
 			ImageView mImageView = new ImageView(mContext);
-			
-//			try{
-//				jsonMood=mJsonList.get(j);
-//				time=timeList.get(j);
-//			}catch(Exception e){
-//				
-//			}
-//			mImageView.setTag(R.id.tag_json,jsonMood);
-//			mImageView.setTag(R.id.tag_time,time);
+
+			// try{
+			// jsonMood=mJsonList.get(j);
+			// time=timeList.get(j);
+			// }catch(Exception e){
+			//
+			// }
+			// mImageView.setTag(R.id.tag_json,jsonMood);
+			// mImageView.setTag(R.id.tag_time,time);
 			imageList.add(mImageView);
 		}
-		
+
 	}
 
 	/** ���䵹Ӱ */
 	public boolean createReflectedImages() {
 		final int reflectionGap = 4;
-		final int Height = (int) (height * 0.417);
+		final int Height = (int) (height * 0.177);
 		int index = 0;
 		for (Map<String, Object> map : list) {
 			Integer id = (Integer) map.get("image");
@@ -116,7 +121,9 @@ public class AllMonthAdapter extends BaseAdapter {
 					sMatrix, true);
 
 			// �Ƿ�ԭͼƬ��ݣ���ʡ�ڴ�
-			originalImage.recycle();
+			if (originalImage != null) {
+				originalImage.recycle();
+			}
 
 			int mwidth = miniBitmap.getWidth();
 			int mheight = miniBitmap.getHeight();
@@ -134,11 +141,19 @@ public class AllMonthAdapter extends BaseAdapter {
 			canvas.drawRect(0, mheight, mwidth, mheight + reflectionGap, paint); // ����ԭͼ�뵹Ӱ�ļ��
 			canvas.drawBitmap(reflectionImage, 0, mheight + reflectionGap, null); // ���Ƶ�Ӱͼ
 
+			if (reflectionImage != null) {
+				reflectionImage.recycle();
+			}
+
 			paint = new Paint();
 			LinearGradient shader = new LinearGradient(0,
 					miniBitmap.getHeight(), 0, bitmapWithReflection.getHeight()
 							+ reflectionGap, 0x70ffffff, 0x00ffffff,
 					TileMode.CLAMP);
+
+			if (miniBitmap != null) {
+				miniBitmap.recycle();
+			}
 			paint.setShader(shader); // ���Խ���Ч��
 			paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN)); // ��Ӱ����Ч��
 			canvas.drawRect(0, mheight, mwidth,
@@ -146,12 +161,12 @@ public class AllMonthAdapter extends BaseAdapter {
 
 			ImageView imageView = new ImageView(mContext);
 			imageView.setImageBitmap(bitmapWithReflection); // ���õ�ӰͼƬ
+
 			imageView.setLayoutParams(new GalleryView.LayoutParams(
 					(int) (width * scale),
 					(int) (mheight * 3 / 2.0 + reflectionGap)));
 			imageView.setScaleType(ScaleType.MATRIX);
 			imageList.add(index++, imageView);
-//			mImages[index++] = imageView;
 		}
 		return true;
 	}

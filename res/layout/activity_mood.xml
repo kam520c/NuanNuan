@@ -3,62 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<!-- 
-    <RelativeLayout
+
+    <include
         android:id="@+id/re_trend"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/title_mood_trend"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        layout="@layout/included_mood_title" />
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dip"
-            android:background="@drawable/all_back" />
-
-        <Button
-            android:id="@+id/btn_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="10dip"
-            android:background="@drawable/mood_refresh" />
-    </RelativeLayout> -->
-
-   
-     <include
-           android:id="@+id/re_trend"
-           layout="@layout/included_mood_title"
-            android:layout_alignParentTop="true"  />
-
-    <ScrollView
+    <FrameLayout
         android:id="@+id/scroll_trend"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/bg_mood_trend"
+        android:layout_height="wrap_content"
         android:layout_below="@id/re_trend" >
 
-        <FrameLayout
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:background="@drawable/bg_mood_trend" >
 
             <com.nuannuan.mood.custom.controls.TrendView
                 android:id="@+id/trendView"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" />
-        </FrameLayout>
-    </ScrollView>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/mood_cloud1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+				 />
+
+            <ImageView
+                android:id="@+id/mood_cloud2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
+            
+        </LinearLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/shadow_text"
         android:layout_width="fill_parent"
         android:layout_height="5dip"
-        android:layout_alignTop="@id/scroll_trend"
+        android:layout_below="@id/re_trend"
         android:background="@drawable/shape_shadow" />
 
 </RelativeLayout>

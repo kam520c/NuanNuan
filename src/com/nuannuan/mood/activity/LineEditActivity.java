@@ -1,6 +1,5 @@
 package com.nuannuan.mood.activity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,25 +9,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.Animation.AnimationListener;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationSet;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nuannuan.common.R;
 import com.nuannuan.common.activity.HomeActivity;
-import com.nuannuan.common.utilitys.AnimationUtil;
+import com.nuannuan.common.utility.AnimationUtil;
 import com.nuannuan.mood.custom.controls.LineEditText;
-import com.nuannuan.mood.utilitys.MoodUtility;
-import com.nuannuan.star.activity.StarFortuneActivity;
-import com.nuannuan.star.asynctask.StarAsyncTaskHelper;
-import com.nuannuan.star.interfaces.StarAsyncEventIm;
-import com.scau.feelingmusic.R;
+import com.nuannuan.mood.utility.MoodUtility;
 
 public class LineEditActivity extends Activity implements OnClickListener {
 	private Button deleteBtn;
-	private Button mButton;
+	private RelativeLayout mButton;
 	private String strMood = null;
 	private LineEditText lineEdit;
 
@@ -49,13 +48,19 @@ public class LineEditActivity extends Activity implements OnClickListener {
 		deleteBtn = (Button) findViewById(R.id.deleteNote);
 		deleteBtn.setOnClickListener(this);
 
-		Button backBtn = (Button) findViewById(R.id.btn_back);
+		LinearLayout backBtn = (LinearLayout) findViewById(R.id.btn_back);
 		backBtn.setOnClickListener(this);
 
-		mButton = (Button) findViewById(R.id.btn_add);
+		mButton = (RelativeLayout) findViewById(R.id.btn_add);
 		mButton.setOnClickListener(this);
 
 		lineEdit = (LineEditText) findViewById(R.id.edit_mood);
+
+		TextView mTextView = (TextView) findViewById(R.id.include_addmood_title);
+		mTextView.setText("心情笔记");
+
+		Button BtnBack = (Button) findViewById(R.id.all_back);
+		BtnBack.setOnClickListener(this);
 
 	}
 
@@ -80,7 +85,7 @@ public class LineEditActivity extends Activity implements OnClickListener {
 				}
 			}
 			if (json != null) {
-				Log.v("======lineEditJson========", "" + json.toString());
+			
 				MoodUtility.ThatDayMoodForSave(this, json.toString());
 				Intent intent = new Intent(this, HomeActivity.class);
 				intent.putExtra("tab", 1);
@@ -93,6 +98,9 @@ public class LineEditActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.btn_back:
+			finish();
+			break;
+		case R.id.all_back:
 			finish();
 			break;
 		default:

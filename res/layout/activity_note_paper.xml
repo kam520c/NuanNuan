@@ -15,9 +15,10 @@
 
         <Button
             android:id="@+id/deleteNote"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:background="@drawable/btn_ashcan" />
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_ashcan2" />
     </LinearLayout>
 
     <include
@@ -44,7 +45,6 @@
             android:inputType="textNoSuggestions|textMultiLine"
             android:minLines="10"
             android:padding="5dip"
-            android:text="Kam"
             android:textColor="@color/purple"
             android:background="@null" 
             android:textSize="22sp"

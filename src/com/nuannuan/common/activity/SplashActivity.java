@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.nuannuan.common.R;
 import com.nuannuan.common.adapter.SplashAdapter;
 import com.nuannuan.common.custom.controls.JazzyViewPager;
 import com.nuannuan.common.custom.controls.JazzyViewPager.TransitionEffect;
-import com.scau.feelingmusic.R;
 
 public class SplashActivity extends Activity implements OnPageChangeListener,
 		OnClickListener {
@@ -39,10 +39,8 @@ public class SplashActivity extends Activity implements OnPageChangeListener,
 		setupJazziness(TransitionEffect.Standard);
 
 		mButton = (Button) findViewById(R.id.guide_btn);
-
 		mButton.setOnClickListener(this);
-		initDots();
-		
+//		initDots();
 	}
 
 	private void setupJazziness(TransitionEffect effect) {
@@ -117,12 +115,12 @@ public class SplashActivity extends Activity implements OnPageChangeListener,
 	// 当新的页面被选中时调用
 	@Override
 	public void onPageSelected(int arg0) {
-		// 设置底部小点选中状态
-		for (int i = 0; i < imageViews.length; i++) {
-			imageViews[arg0].setBackgroundResource(R.drawable.splash_doc_blue);
-			if (arg0 != i) {
-				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
-			}
+//		// 设置底部小点选中状态
+//		for (int i = 0; i < imageViews.length; i++) {
+//			imageViews[arg0].setBackgroundResource(R.drawable.splash_doc_blue);
+//			if (arg0 != i) {
+//				imageViews[i].setBackgroundResource(R.drawable.splash_doc_gray);
+//			}
 			if (arg0 == 3) {
 				// 设置导航按钮可见
 				mButton.setVisibility(View.VISIBLE);
@@ -130,7 +128,7 @@ public class SplashActivity extends Activity implements OnPageChangeListener,
 				// 设置导航按钮不可见
 				mButton.setVisibility(View.INVISIBLE);
 			}
-		}
+//		}
 	}
 
 	@Override

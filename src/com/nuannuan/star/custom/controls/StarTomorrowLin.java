@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.scau.feelingmusic.R;
+import com.nuannuan.common.R;
 
 public class StarTomorrowLin extends LinearLayout {
 
@@ -219,25 +219,25 @@ public class StarTomorrowLin extends LinearLayout {
 		bar2 = (RatingBar) view.findViewById(R.id.rtb2);
 		bar3 = (RatingBar) view.findViewById(R.id.rtb3);
 
-		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
-				"fonts/snFontP2.TTF");
-		text0.setTypeface(face2);
-		text1.setTypeface(face2);
-		text2.setTypeface(face2);
-		text3.setTypeface(face2);
-		text4.setTypeface(face2);
-		text5.setTypeface(face2);
-		text6.setTypeface(face2);
-		text7.setTypeface(face2);
-		text8.setTypeface(face2);
-		text9.setTypeface(face2);
-
-		text44.setTypeface(face2);
-		text55.setTypeface(face2);
-		text66.setTypeface(face2);
-		text77.setTypeface(face2);
-		text88.setTypeface(face2);
-		text99.setTypeface(face2);
+//		Typeface face2 = Typeface.createFromAsset(mContext.getAssets(),
+//				"fonts/snFontP2.TTF");
+//		text0.setTypeface(face2);
+//		text1.setTypeface(face2);
+//		text2.setTypeface(face2);
+//		text3.setTypeface(face2);
+//		text4.setTypeface(face2);
+//		text5.setTypeface(face2);
+//		text6.setTypeface(face2);
+//		text7.setTypeface(face2);
+//		text8.setTypeface(face2);
+//		text9.setTypeface(face2);
+//
+//		text44.setTypeface(face2);
+//		text55.setTypeface(face2);
+//		text66.setTypeface(face2);
+//		text77.setTypeface(face2);
+//		text88.setTypeface(face2);
+//		text99.setTypeface(face2);
 
 		// day_title.setTypeface(face2);
 		// day_time_title.setTypeface(face2);
